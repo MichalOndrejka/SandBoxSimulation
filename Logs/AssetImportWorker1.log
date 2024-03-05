@@ -1,0 +1,630 @@
+Using pre-set license
+Built from '2022.3/release' branch; Version is '2022.3.20f1 (61c2feb0970d) revision 6406910'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 11  (10.0.22631) 64bit Core' Language: 'en' Physical Memory: 16075 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2022.3.20f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker1
+-projectPath
+C:/Users/micha/OneDrive/Počítač/SandBoxSimulation
+-logFile
+Logs/AssetImportWorker1.log
+-srvPort
+62838
+Successfully changed project path to: C:/Users/micha/OneDrive/Počítač/SandBoxSimulation
+C:/Users/micha/OneDrive/Počítač/SandBoxSimulation
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [7004] Host "[IP] 147.229.180.160 [Port] 0 [Flags] 2 [Guid] 2890451063 [EditorId] 2890451063 [Version] 1048832 [Id] WindowsEditor(7,Michal) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+
+Player connection [7004] Host "[IP] 147.229.180.160 [Port] 0 [Flags] 2 [Guid] 2890451063 [EditorId] 2890451063 [Version] 1048832 [Id] WindowsEditor(7,Michal) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+
+[Physics::Module] Initialized MultithreadedJobDispatcher with 7 workers.
+Refreshing native plugins compatible for Editor in 7.61 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2022.3.20f1 (61c2feb0970d)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.20f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/micha/OneDrive/Počítač/SandBoxSimulation/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1650 with Max-Q Design (ID=0x1f9d)
+    Vendor:   NVIDIA
+    VRAM:     3937 MB
+    Driver:   31.0.15.5152
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.20f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.20f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.20f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56648
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.20f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.006251 seconds.
+- Loaded All Assemblies, in  0.446 seconds
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.365 seconds
+Domain Reload Profiling: 810ms
+	BeginReloadAssembly (118ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (42ms)
+	RebuildNativeTypeToScriptingClass (14ms)
+	initialDomainReloadingComplete (56ms)
+	LoadAllAssembliesAndSetupDomain (215ms)
+		LoadAssemblies (114ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (213ms)
+			TypeCache.Refresh (211ms)
+				TypeCache.ScanAssembly (191ms)
+			ScanForSourceGeneratedMonoScriptInfo (1ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (366ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (264ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (10ms)
+			SetLoadedEditorAssemblies (8ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (3ms)
+			ProcessInitializeOnLoadAttributes (186ms)
+			ProcessInitializeOnLoadMethodAttributes (57ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.688 seconds
+Refreshing native plugins compatible for Editor in 4.48 ms, found 4 plugins.
+Native extension for WindowsStandalone target not found
+Package Manager log level set to [2]
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.763 seconds
+Domain Reload Profiling: 1450ms
+	BeginReloadAssembly (154ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (4ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (24ms)
+	RebuildCommonClasses (41ms)
+	RebuildNativeTypeToScriptingClass (15ms)
+	initialDomainReloadingComplete (57ms)
+	LoadAllAssembliesAndSetupDomain (420ms)
+		LoadAssemblies (294ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (214ms)
+			TypeCache.Refresh (194ms)
+				TypeCache.ScanAssembly (175ms)
+			ScanForSourceGeneratedMonoScriptInfo (16ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (763ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (490ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (5ms)
+			SetLoadedEditorAssemblies (6ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (61ms)
+			ProcessInitializeOnLoadAttributes (388ms)
+			ProcessInitializeOnLoadMethodAttributes (24ms)
+			AfterProcessingInitializeOnLoad (6ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (7ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
+Refreshing native plugins compatible for Editor in 3.69 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3193 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 35 unused Assets / (58.5 KB). Loaded Objects now: 3652.
+Memory consumption went from 124.3 MB to 124.2 MB.
+Total: 3.748400 ms (FindLiveObjects: 0.741800 ms CreateObjectMapping: 0.253800 ms MarkObjects: 2.613300 ms  DeleteObjects: 0.137500 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 6d391050e5a25f67b0a2c618074f2cd9 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 361994.599551 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/Body.cs
+  artifactKey: Guid(2de6a71b01a15e740a2fb488ab8a1b07) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/Body.cs using Guid(2de6a71b01a15e740a2fb488ab8a1b07) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'b43891bbe271f8c53fc68a0921f0cdf5') in 0.110748 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Plugins/Metro/KinectUnityAddin.dll
+  artifactKey: Guid(85bafbe9b14b18b45b445b304b1f3efc) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/Metro/KinectUnityAddin.dll using Guid(85bafbe9b14b18b45b445b304b1f3efc) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '21d6121758def7f5564b1bdd83634a66') in 0.106443 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000048 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/CoordinateMappingChangedEventArgs.cs
+  artifactKey: Guid(82cb5d8afd91cba43a5380999e22e2cb) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/CoordinateMappingChangedEventArgs.cs using Guid(82cb5d8afd91cba43a5380999e22e2cb) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '3fd407b8a55f24ff92e5173b9c45d12f') in 0.033405 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000090 seconds.
+  path: Assets/Scripts/Kinect/DisableOnStart.cs
+  artifactKey: Guid(61e5c93f5da1e324aa7fd9671db875bc) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Scripts/Kinect/DisableOnStart.cs using Guid(61e5c93f5da1e324aa7fd9671db875bc) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '3281546b620ead22adf6b00a63e5f893') in 0.014844 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/Activity.cs
+  artifactKey: Guid(ec6785f19ac6c494a9957fa63f49fcf5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/Activity.cs using Guid(ec6785f19ac6c494a9957fa63f49fcf5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '912fe81b0e4326c2f28a56c7575d7ad7') in 0.009874 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/ColorSpacePoint.cs
+  artifactKey: Guid(9eb5711cb5d886b45883ead06f286283) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/ColorSpacePoint.cs using Guid(9eb5711cb5d886b45883ead06f286283) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '8938a48838f8b317399ccc354e2f1ccc') in 0.016415 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/AudioBeamFrameArrivedEventArgs.cs
+  artifactKey: Guid(bb78a9668fb2c694881a216e349cb1e9) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/AudioBeamFrameArrivedEventArgs.cs using Guid(bb78a9668fb2c694881a216e349cb1e9) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '31954c47921a0f2286694f0db2462445') in 0.016655 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/BodyIndexFrameReader.cs
+  artifactKey: Guid(0a9ba9eb393e51241bb15db5d3bf3390) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/BodyIndexFrameReader.cs using Guid(0a9ba9eb393e51241bb15db5d3bf3390) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '07238582e4060f092fe346b1a65af5b4') in 0.016445 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/KinectAudioCalibrationState.cs
+  artifactKey: Guid(87d856dfd833c524381664b12e58813a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/KinectAudioCalibrationState.cs using Guid(87d856dfd833c524381664b12e58813a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '8aa9430723e8a6e4c8d379c64316d0e7') in 0.013809 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/InfraredFrameReader.cs
+  artifactKey: Guid(0937005bb1a679a40a0bffab4f8fa84b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/InfraredFrameReader.cs using Guid(0937005bb1a679a40a0bffab4f8fa84b) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'c15394275a2a04f9985d8eb2cbe3ba3a') in 0.014087 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/FrameCapturedStatus.cs
+  artifactKey: Guid(ccf1cabe437c4764d9818a2fd30827f0) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/FrameCapturedStatus.cs using Guid(ccf1cabe437c4764d9818a2fd30827f0) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'aae8224450b6cd935b0491daf172b4c2') in 0.012585 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Standard Assets/NativeObjectCache.cs
+  artifactKey: Guid(96cf7d466b0b0bb4d92fb09d817ad613) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/NativeObjectCache.cs using Guid(96cf7d466b0b0bb4d92fb09d817ad613) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '806ed9c71b7b6d17419de56b250dd33f') in 0.014082 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Scripts/ViewerScript.cs
+  artifactKey: Guid(18e93e53661dc7e4d8e2ee085459edf6) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Scripts/ViewerScript.cs using Guid(18e93e53661dc7e4d8e2ee085459edf6) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '5a2fe4cecd255bcd4b86d8b567b5ba34') in 0.012135 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/FrameEdges.cs
+  artifactKey: Guid(34cd6f0c5382cd9458b3b1ef06e001ba) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/FrameEdges.cs using Guid(34cd6f0c5382cd9458b3b1ef06e001ba) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '1226da815576e05bde7e5fe973128136') in 0.011827 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/AudioBeamFrame.cs
+  artifactKey: Guid(8ff93fd69396b944ea1e0d067cf5b091) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/AudioBeamFrame.cs using Guid(8ff93fd69396b944ea1e0d067cf5b091) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '36572b010a0ae128c95ecc2b7460a3a3') in 0.014700 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/Expression.cs
+  artifactKey: Guid(13c84518ab4fa60499742f896207e91e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/Expression.cs using Guid(13c84518ab4fa60499742f896207e91e) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '579a300cf3f37d56768deda3a53d7ba5') in 0.015239 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/ColorFrameArrivedEventArgs.cs
+  artifactKey: Guid(383ab6b5e32edbc4ca3eca80db481330) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/ColorFrameArrivedEventArgs.cs using Guid(383ab6b5e32edbc4ca3eca80db481330) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '16d012d3157aa87de21eed5393d47e18') in 0.014137 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000052 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/AudioSource.cs
+  artifactKey: Guid(cb60632e999b8d44cb5cfd848e264abf) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/AudioSource.cs using Guid(cb60632e999b8d44cb5cfd848e264abf) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '9c14a24b698ddf05475c5cc7d3d6ce76') in 0.015774 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/FrameDescription.cs
+  artifactKey: Guid(855fcb405500ab14b8902d15d27ed0ab) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/FrameDescription.cs using Guid(855fcb405500ab14b8902d15d27ed0ab) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '890b9b201a205c785280caea79eaa59d') in 0.014872 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Scripts/Kinect/BodySourceManager.cs
+  artifactKey: Guid(2e74aed0503c9d24290a1ae5438fddc3) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Scripts/Kinect/BodySourceManager.cs using Guid(2e74aed0503c9d24290a1ae5438fddc3) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '43a00a5a07ba922cc274d1b196e94cb8') in 0.014224 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/ColorFrameReader.cs
+  artifactKey: Guid(6c8a043d45b0ce641bfe872c2654ec00) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/ColorFrameReader.cs using Guid(6c8a043d45b0ce641bfe872c2654ec00) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'e091783c6dc76e54565491e7fed4ed86') in 0.015146 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000059 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/BodyFrameReader.cs
+  artifactKey: Guid(3af2f300d248d614eb0f026c16be6e51) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/BodyFrameReader.cs using Guid(3af2f300d248d614eb0f026c16be6e51) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '1332853a0aeb72d09017b0fb5c18c15d') in 0.014866 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/FrameSourceTypes.cs
+  artifactKey: Guid(bbb237f869b7c684aa4bff904d74ceed) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/FrameSourceTypes.cs using Guid(bbb237f869b7c684aa4bff904d74ceed) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'fa81118ef85f469a2fdb229ae3ee111c') in 0.016269 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000046 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/BodyIndexFrame.cs
+  artifactKey: Guid(31029a9c200fe984790d50a6d2875e32) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/BodyIndexFrame.cs using Guid(31029a9c200fe984790d50a6d2875e32) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '52ceebc186b66d3ca8e8a9adcdcf3164') in 0.013818 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000084 seconds.
+  path: Assets/Scripts/MeasureDepth.cs
+  artifactKey: Guid(e85467ddd9851b8419336d453e9b402a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Scripts/MeasureDepth.cs using Guid(e85467ddd9851b8419336d453e9b402a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '81c3ca8c42bddc454c8b35dbe4b12e93') in 0.015744 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/DepthFrameReader.cs
+  artifactKey: Guid(19e437f0dfc211640b0b56e1e0221a8f) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/DepthFrameReader.cs using Guid(19e437f0dfc211640b0b56e1e0221a8f) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '9823dd4ffaa29a3102e48d1f0413244e') in 0.015092 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000063 seconds.
+  path: Assets/Standard Assets/EventPump.cs
+  artifactKey: Guid(debd3e6b79ccfa7439ef3bc59b8d30e6) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/EventPump.cs using Guid(debd3e6b79ccfa7439ef3bc59b8d30e6) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '8465b79f061e8fb2bc9e378f48b838b0') in 0.011087 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/JointOrientation.cs
+  artifactKey: Guid(d616618770c2c84469f5aaa5f72ca2ca) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/JointOrientation.cs using Guid(d616618770c2c84469f5aaa5f72ca2ca) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '6b27acc87d6314a38d0531f9040b58fa') in 0.017386 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Plugins/x86/KinectUnityAddin.dll
+  artifactKey: Guid(b65facb0c9c68b647b8ca7435b5f35c4) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/x86/KinectUnityAddin.dll using Guid(b65facb0c9c68b647b8ca7435b5f35c4) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '9caa1e2220618618bad35d00de8cde67') in 0.013941 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/BodyIndexFrameReference.cs
+  artifactKey: Guid(3ee08767e1297454a93a5759b975860d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/BodyIndexFrameReference.cs using Guid(3ee08767e1297454a93a5759b975860d) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '179cd9a1e27f8528087e7e898c3818dd') in 0.014220 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/KinectCapabilities.cs
+  artifactKey: Guid(6dcba0f7ec870d94c849f4d8ed860377) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/KinectCapabilities.cs using Guid(6dcba0f7ec870d94c849f4d8ed860377) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '6007060f24eeae5c878e44d0dea90882') in 0.013998 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/LongExposureInfraredFrameArrivedEventArgs.cs
+  artifactKey: Guid(dbaaf8e0d23f24848ab81331f4379722) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/LongExposureInfraredFrameArrivedEventArgs.cs using Guid(dbaaf8e0d23f24848ab81331f4379722) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '911cafca1617c1f91d3569825942541a') in 0.031365 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/MultiSourceFrame.cs
+  artifactKey: Guid(eb5e1a9a4aa7a3f4b8190ab4fab84118) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/MultiSourceFrame.cs using Guid(eb5e1a9a4aa7a3f4b8190ab4fab84118) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '9ec24eae05ea1e81b229f494f83766ed') in 0.015345 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/ColorFrameSource.cs
+  artifactKey: Guid(31be1a3a8cdc0d1408a7eada947fe966) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/ColorFrameSource.cs using Guid(31be1a3a8cdc0d1408a7eada947fe966) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '4ec452c31d811857d13c80fc7495ca08') in 0.013317 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/ColorFrameReference.cs
+  artifactKey: Guid(05fb49d39d96f5a4ea512141fab5cff6) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/ColorFrameReference.cs using Guid(05fb49d39d96f5a4ea512141fab5cff6) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'b2b6def1738899fe03a6dbc2de835d57') in 0.013983 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/TrackingConfidence.cs
+  artifactKey: Guid(7fc638ac4166d2945b7efa3e6699e510) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/TrackingConfidence.cs using Guid(7fc638ac4166d2945b7efa3e6699e510) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '2bf5a148f39fe9c82cac82b4a91d71c4') in 0.014124 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/FrameCapturedEventArgs.cs
+  artifactKey: Guid(085ec75a343f958408701e00ba2168ce) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/FrameCapturedEventArgs.cs using Guid(085ec75a343f958408701e00ba2168ce) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '086e365819f1263986d36409e2948a12') in 0.014842 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000077 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/LongExposureInfraredFrameReader.cs
+  artifactKey: Guid(78a6e9053bd545d4f948fa1d8ced5879) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/LongExposureInfraredFrameReader.cs using Guid(78a6e9053bd545d4f948fa1d8ced5879) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '3c445411838c93efa0fa616b2bbeaa89') in 0.014531 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Plugins/x86_64/KinectUnityAddin.dll
+  artifactKey: Guid(82e143d16729051459ae6a54b37e9eab) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Plugins/x86_64/KinectUnityAddin.dll using Guid(82e143d16729051459ae6a54b37e9eab) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'a20359c157b259b80685cd6097957358') in 0.013185 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000371 seconds.
+  path: Assets/Scripts/Kinect/DepthSourceManager.cs
+  artifactKey: Guid(1cd019cdd7a54604b9ae8091d242d8a4) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Scripts/Kinect/DepthSourceManager.cs using Guid(1cd019cdd7a54604b9ae8091d242d8a4) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'cc508d037d0a7843b099073e44d9beb1') in 0.012716 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/DepthFrameSource.cs
+  artifactKey: Guid(ec16a6a3c150d4c479a008f45c1851ec) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/DepthFrameSource.cs using Guid(ec16a6a3c150d4c479a008f45c1851ec) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '8c0024998fa6a7937c8775cc2620f512') in 0.014765 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/Appearance.cs
+  artifactKey: Guid(00eb0d9c4964c0b4f9e3090704ff7201) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/Appearance.cs using Guid(00eb0d9c4964c0b4f9e3090704ff7201) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '9eae348e6085bdc8bddc4b043d5ce67b') in 0.014538 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/CameraSpacePoint.cs
+  artifactKey: Guid(ef37675a811881f44be680e69695e9e3) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/CameraSpacePoint.cs using Guid(ef37675a811881f44be680e69695e9e3) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'a12d4364e7f9891405ba7d06860a434e') in 0.014797 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/JointType.cs
+  artifactKey: Guid(1791e2ee3f5ea1343a2694b4e1b3f00f) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/JointType.cs using Guid(1791e2ee3f5ea1343a2694b4e1b3f00f) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '98f93a7a0f41030b14eb2c846eddac39') in 0.018199 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/AudioBeamFrameReference.cs
+  artifactKey: Guid(0fe91384e0a914a4985b0cc2f1026a72) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/AudioBeamFrameReference.cs using Guid(0fe91384e0a914a4985b0cc2f1026a72) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'e361c3a34fe92ea61d5886f5182d7e62') in 0.016538 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/HandState.cs
+  artifactKey: Guid(61c6c0071af9a08459843e571124cbef) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/HandState.cs using Guid(61c6c0071af9a08459843e571124cbef) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '0f003eab8bc003c7861ccf1231ef17b5') in 0.015562 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000047 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/MultiSourceFrameArrivedEventArgs.cs
+  artifactKey: Guid(1188dd030cd382340966a429c46ed4fe) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/MultiSourceFrameArrivedEventArgs.cs using Guid(1188dd030cd382340966a429c46ed4fe) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'ee4b3073516f1bea12bcc2b139354f96') in 0.025223 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/BodyFrame.cs
+  artifactKey: Guid(19d23b65a55461b4c8fcfc815e9a8be5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/BodyFrame.cs using Guid(19d23b65a55461b4c8fcfc815e9a8be5) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'bc5ccfc0a59f748922d60bd32d7cfe08') in 0.018117 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/MultiSourceFrameReader.cs
+  artifactKey: Guid(a52acb4cdb90b3a4fa3937ab27ced4ff) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/MultiSourceFrameReader.cs using Guid(a52acb4cdb90b3a4fa3937ab27ced4ff) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: '3d1e2b57ac084c1c1cc9ca1e2be9c88a') in 0.036546 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.001010 seconds.
+  path: Assets/Standard Assets/Windows/Kinect/DepthFrame.cs
+  artifactKey: Guid(1cc3d786ee7037e40b806839fdca184a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23)
+Start importing Assets/Standard Assets/Windows/Kinect/DepthFrame.cs using Guid(1cc3d786ee7037e40b806839fdca184a) Importer(2089858483,0ecaa5967403d082aa24f35e1b516d23) Generated GUIDs only implemented for interfaces!
+ -> (artifact id: 'f7b636efa43501bd1df9c018dd51f328') in 0.026194 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
