@@ -4,94 +4,110 @@ using static UnityEngine.EventSystems.EventTrigger;
 public class MeasureDepth : MonoBehaviour
 {
     public Texture2D terrainTexture;
-    public Texture2D waterTexture;
 
-    [SerializeField]
-    private ushort maxDepth = 1170;
-    [SerializeField]
-    private ushort minDepth = 900;
-    private int waterRadius = 5;
-    private float waterSpeed = 0.1f;
-    private uint waterMass = 10;
+    public ushort maxDepth = 1170;
+    public ushort minDepth = 900;
 
     [SerializeField]
     private MultiSourceManager multiSourceManager;
+    [SerializeField]
+    private WaterSimulationScript waterSimulationScript;
 
-    private ushort[] _depthData;
-    private uint[,] waterLocation;
+    public ushort[] depthData;
+    private ushort[] _rawDepthData;
 
-    private readonly Vector2Int _depthResolution = new Vector2Int(512, 424);
+    public readonly Vector2Int depthResolution = new Vector2Int(512, 424);
 
-    private bool animating = false;
-
-    private void Awake()
-    {
-        waterLocation = new uint[_depthResolution.x, _depthResolution.y];
-    }
+    private int imageNumber = 0;
 
     private void Start()
     {
-        InitializeTextures();
+        InitializeTexture();
     }
 
     private void Update()
     {
-        _depthData = multiSourceManager.GetDepthData();
-        UpdateTerrainTexture();
-
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1))
         {
-            int x = (int)(Input.mousePosition.x / Screen.width * _depthResolution.x);
-            int y = (int)(Input.mousePosition.y / Screen.height * _depthResolution.y);
+            CreateHeightmap();
+        }
+        _rawDepthData = multiSourceManager.GetDepthData();
+        depthData = multiSourceManager.GetDepthData();
+        waterSimulationScript.depthData = depthData;
+        if (Input.GetMouseButton(0))
+        {
+            UpdateTerrainTexture();
+        }
+    }
 
-            AddWater(x, y, waterRadius);
-            UpdateWaterTexture();
-
-            if (!animating)
+    private void handleRawDepthData()
+    {
+        for(int i = 0; i < _rawDepthData.Length; i++) { 
+            ushort rawDepth = _rawDepthData[i];
+            if (rawDepth < minDepth) continue;
+            else if (rawDepth > maxDepth) continue;
+            else
             {
-                InvokeRepeating("AnimateWater", 0f, waterSpeed);
-                animating = true;
+                depthData[i] = rawDepth;
             }
         }
     }
 
-    private void InitializeTextures()
+    private void CreateHeightmap()
     {
-        terrainTexture = new Texture2D(_depthResolution.x, _depthResolution.y, TextureFormat.RGB24, false);
+        Debug.Log("Creating HeightMap of image " + imageNumber);
+        int width = depthResolution.x;
+        int height = depthResolution.y;
+        Texture2D depthTexture = new Texture2D(width, height, TextureFormat.RGBA32, false);
 
-        for (int x = 0; x < _depthResolution.x; x++)
+        // Normalize and set the depth data to the texture
+        for (int i = 0; i < depthData.Length; i++)
         {
-            for (int y = 0; y < _depthResolution.y; y++)
+            int x = i % width;
+            int y = i / width;
+
+            float normalizedDepth = Mathf.InverseLerp(maxDepth, 200, depthData[i]);
+            Color depthColor = new Color(normalizedDepth, normalizedDepth, normalizedDepth, 1f);
+            depthTexture.SetPixel(x, y, depthColor);
+        }
+
+        // Apply changes and encode the texture to PNG
+        depthTexture.Apply();
+        byte[] pngBytes = depthTexture.EncodeToPNG();
+
+        // Save the PNG file
+        System.IO.File.WriteAllBytes("Assets/PointGesture/Point" + imageNumber + ".png", pngBytes);
+
+        Debug.Log("HeightMap created of image " + imageNumber);
+
+        imageNumber++;
+    }
+
+    private void InitializeTexture()
+    {
+        terrainTexture = new Texture2D(depthResolution.x, depthResolution.y, TextureFormat.RGB24, false);
+
+        for (int x = 0; x < depthResolution.x; x++)
+        {
+            for (int y = 0; y < depthResolution.y; y++)
             {
                 terrainTexture.SetPixel(x, y, Color.black);
             }
         }
 
         terrainTexture.Apply();
-
-        waterTexture = new Texture2D(_depthResolution.x, _depthResolution.y, TextureFormat.RGBA4444, false);
-
-        for (int x = 0; x < _depthResolution.x; x++)
-        {
-            for (int y = 0; y < _depthResolution.y; y++)
-            {
-                waterTexture.SetPixel(x, y, Color.clear);
-            }
-        }
-
-        waterTexture.Apply();
     }
 
     private void UpdateTerrainTexture()
     {
         double scale = 255.0 / (maxDepth - minDepth);
 
-        for (int x = 0; x < _depthResolution.x; x++)
+        for (int x = 0; x < depthResolution.x; x++)
         {
-            for (int y = 0; y < _depthResolution.y; y++)
+            for (int y = 0; y < depthResolution.y; y++)
             {
-                int index = _depthResolution.x * y + x;
-                ushort depth = _depthData[index];
+                int index = depthResolution.x * y + x;
+                ushort depth = depthData[index];
                 byte intensity = (byte)((depth - minDepth) * scale);
 
                 if (depth < minDepth || depth > maxDepth)
@@ -111,92 +127,5 @@ public class MeasureDepth : MonoBehaviour
         }
 
         terrainTexture.Apply();
-    }
-
-    private void UpdateWaterTexture()
-    {
-        for (int x = 0; x < _depthResolution.x; x++)
-        {
-            for (int y = 0; y < _depthResolution.y; y++)
-            {
-                if (waterLocation[x, y] > 0) waterTexture.SetPixel(x, y, Color.blue);
-                else waterTexture.SetPixel(x, y, Color.clear);
-            }
-        }
-
-        waterTexture.Apply();
-    }
-
-    private void AddWater(int centerX, int centerY, int radius)
-    {
-        for (int x = centerX - radius; x <= centerX + radius; x++)
-        {
-            for (int y = centerY - radius; y <= centerY + radius; y++)
-            {
-                if (x < 0 || x > _depthResolution.x) continue;
-                if (y < 0 || y > _depthResolution.y) continue;
-                if (IsInCircle(x, y, centerX, centerY, radius))
-                {
-                    waterLocation[x, y] += waterMass;
-                }
-            }
-        }
-    }
-
-    private bool IsInCircle(int x, int y, int centerX, int centerY, int radius)
-    {
-        int distanceSquared = (x - centerX) * (x - centerX) + (y - centerY) * (y - centerY);
-        return distanceSquared <= radius * radius;
-    }
-
-    private void AnimateWater()
-    {
-        Debug.Log("Animation");
-        for (int x = 0; x < _depthResolution.x ; x++)
-        {
-            for (int y = 0; y < _depthResolution.y; y++)
-            {
-                if (waterLocation[x, y] > 0)
-                {
-                    MoveWater(x, y);
-                }
-            }
-        }
-
-        UpdateWaterTexture();
-    }
-    private void MoveWater(int centerX, int centerY)
-    {
-        ushort currentDepth = _depthData[_depthResolution.x * centerY + centerX];
-
-        if (currentDepth <= 0) return;
-
-        int targetX = centerX;
-        int targetY = centerY;
-        uint targetDepth = currentDepth;
-
-        for (int dx = -1; dx <= 1; dx++)
-        {
-            for (int dy = -1; dy <= 1; dy++)
-            {
-                int newX = centerX + dx;
-                int newY = centerY + dy;
-
-                if (newX >= 0 && newX < _depthResolution.x && newY >= 0 && newY < _depthResolution.y)
-                {
-                    ushort newDepth = _depthData[_depthResolution.x * newY + newX];
-
-                    if (newDepth > targetDepth)
-                    {
-                        targetX = newX;
-                        targetY = newY;
-                        targetDepth = newDepth;
-                    }
-                }
-            }
-        }
-
-        waterLocation[targetX, targetY] += 1;
-        waterLocation[centerX, centerY] -= 1;
     }
 }

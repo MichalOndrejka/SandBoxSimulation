@@ -8,6 +8,8 @@ public class ViewerScript : MonoBehaviour
     [SerializeField]
     private MeasureDepth measureDepth;
     [SerializeField]
+    private WaterSimulationScript waterSimulationScript;
+    [SerializeField]
     private MultiSourceManager multiSourceManager;
 
     [SerializeField]
@@ -19,6 +21,6 @@ public class ViewerScript : MonoBehaviour
     {
         terrainImage.texture = measureDepth.terrainTexture;
 
-        waterImage.texture = measureDepth.waterTexture;
+        waterImage.texture = waterSimulationScript.waterTexture;
     }
 }
