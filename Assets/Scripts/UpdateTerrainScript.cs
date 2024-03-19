@@ -30,7 +30,7 @@ public class UpdateTerrainScript : MonoBehaviour
         }
     }
 
-    void UpdateTerrain()
+    public void UpdateTerrain()
     {
         TerrainData terrainData = _terrain.terrainData;
 

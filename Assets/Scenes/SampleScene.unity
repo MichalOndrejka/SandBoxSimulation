@@ -442,6 +442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   measureDepth: {fileID: 1294677224}
+  updateTime: 3
 --- !u!1 &865742852
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,13 +630,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e85467ddd9851b8419336d453e9b402a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  multiSourceManager: {fileID: 1802491566}
+  waterSimulationScript: {fileID: 865742854}
+  updateTerrainScript: {fileID: 343928565}
   terrainTexture: {fileID: 0}
   maxDepth: 1170
   minDepth: 900
-  multiSourceManager: {fileID: 1802491566}
-  waterSimulationScript: {fileID: 865742854}
-  updateTerrainScript: {fileID: 0}
   depthData: 
+  measureFrequency: 1
 --- !u!1 &1528619592
 GameObject:
   m_ObjectHideFlags: 0

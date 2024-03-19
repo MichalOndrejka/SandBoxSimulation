@@ -8,7 +8,6 @@ public class WaterSimulationScript : MonoBehaviour
 
     [SerializeField]
     private MeasureDepth measureDepth;
-    private Vector2Int _depthResolution;
 
     private int waterRadius = 1;
     private float waterSpeed = 0.1f;
@@ -22,8 +21,7 @@ public class WaterSimulationScript : MonoBehaviour
 
     private void Start()
     {
-        _depthResolution = new Vector2Int(measureDepth.depthResolution.x, measureDepth.depthResolution.y);
-        waterLocation = new uint[_depthResolution.x, _depthResolution.y];
+        waterLocation = new uint[measureDepth.depthResolution.x, measureDepth.depthResolution.y];
 
         InitializeTexture();
     }
@@ -41,8 +39,8 @@ public class WaterSimulationScript : MonoBehaviour
 
         int minX = 100;
         int minY = 70;
-        int maxX = _depthResolution.x - 50;
-        int maxY = _depthResolution.y - 100;
+        int maxX = measureDepth.depthResolution.x - 50;
+        int maxY = measureDepth.depthResolution.y - 100;
 
         ushort minDepth = 900;
 
@@ -52,7 +50,7 @@ public class WaterSimulationScript : MonoBehaviour
         {
             for (int y = minY; y < maxY; y++)
             {
-                int index = y * _depthResolution.x + x;
+                int index = y * measureDepth.depthResolution.x + x;
                 ushort depth = depthData[index];
 
                 if (depth < minDepth && depth != 0)
@@ -80,11 +78,11 @@ public class WaterSimulationScript : MonoBehaviour
 
     private void InitializeTexture()
     {
-        waterTexture = new Texture2D(_depthResolution.x, _depthResolution.y, TextureFormat.RGBA4444, false);
+        waterTexture = new Texture2D(measureDepth.depthResolution.x, measureDepth.depthResolution.y, TextureFormat.RGBA4444, false);
 
-        for (int x = 0; x < _depthResolution.x; x++)
+        for (int x = 0; x < measureDepth.depthResolution.x; x++)
         {
-            for (int y = 0; y < _depthResolution.y; y++)
+            for (int y = 0; y < measureDepth.depthResolution.y; y++)
             {
                 waterTexture.SetPixel(x, y, Color.clear);
             }
@@ -94,9 +92,9 @@ public class WaterSimulationScript : MonoBehaviour
     }
     public void UpdateWaterTexture()
     {
-        for (int x = 0; x < _depthResolution.x; x++)
+        for (int x = 0; x < measureDepth.depthResolution.x; x++)
         {
-            for (int y = 0; y < _depthResolution.y; y++)
+            for (int y = 0; y < measureDepth.depthResolution.y; y++)
             {
                 if (waterLocation[x, y] > 0) waterTexture.SetPixel(x, y, Color.blue);
                 else waterTexture.SetPixel(x, y, Color.clear);
@@ -112,8 +110,8 @@ public class WaterSimulationScript : MonoBehaviour
         {
             for (int y = centerY - radius; y <= centerY + radius; y++)
             {
-                if (x < 0 || x > _depthResolution.x) continue;
-                if (y < 0 || y > _depthResolution.y) continue;
+                if (x < 0 || x > measureDepth.depthResolution.x) continue;
+                if (y < 0 || y > measureDepth.depthResolution.y) continue;
                 if (IsInCircle(x, y, centerX, centerY, radius))
                 {
                     waterLocation[x, y] += waterMass;
@@ -130,9 +128,9 @@ public class WaterSimulationScript : MonoBehaviour
 
     private void animateWater()
     {
-        for (int x = 0; x < _depthResolution.x; x++)
-        {
-            for (int y = 0; y < _depthResolution.y; y++)
+        for (int x = 0; x < measureDepth.depthResolution.x; x++)
+        {   
+            for (int y = 0; y < measureDepth.depthResolution.y; y++)
             {
                 if (waterLocation[x, y] > 0)
                 {
@@ -145,7 +143,7 @@ public class WaterSimulationScript : MonoBehaviour
     }
     private void MoveWater(int centerX, int centerY)
     {
-        ushort currentDepth = depthData[_depthResolution.x * centerY + centerX];
+        ushort currentDepth = depthData[measureDepth.depthResolution.x * centerY + centerX];
 
         if (currentDepth <= 0) return;
 
@@ -160,9 +158,9 @@ public class WaterSimulationScript : MonoBehaviour
                 int newX = centerX + dx;
                 int newY = centerY + dy;
 
-                if (newX >= 0 && newX < _depthResolution.x && newY >= 0 && newY < _depthResolution.y)
+                if (newX >= 0 && newX < measureDepth.depthResolution.x && newY >= 0 && newY < measureDepth.depthResolution.y)
                 {
-                    ushort newDepth = depthData[_depthResolution.x * newY + newX];
+                    ushort newDepth = depthData[measureDepth.depthResolution.x * newY + newX];
 
                     if (newDepth > targetDepth)
                     {
