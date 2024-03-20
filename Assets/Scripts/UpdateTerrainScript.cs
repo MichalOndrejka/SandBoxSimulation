@@ -5,6 +5,15 @@ using UnityEngine;
 
 public class UpdateTerrainScript : MonoBehaviour
 {
+    [SerializeField]
+    private Texture2D sandTexture;
+    [SerializeField]
+    private Texture2D grassTexture;
+    [SerializeField]
+    private Texture2D rockTexture;
+    [SerializeField]
+    private Texture2D snowTexture;
+
     private Terrain _terrain;
 
     [SerializeField]
@@ -18,6 +27,8 @@ public class UpdateTerrainScript : MonoBehaviour
     {
         _time = 0f;
         _terrain = GetComponent<Terrain>();
+
+        //ApplyTexturesBasedOnHeight();
     }
 
     private void Update()
@@ -25,9 +36,53 @@ public class UpdateTerrainScript : MonoBehaviour
         _time += Time.deltaTime;
         if (_time > updateTime)
         {
-            UpdateTerrain();
+            //UpdateTerrain();
             _time -= updateTime;
         }
+    }
+
+    void ApplyTexturesBasedOnHeight()
+    {
+        TerrainData terrainData = _terrain.terrainData;
+        int heightmapWidth = terrainData.heightmapResolution;
+        int heightmapHeight = terrainData.heightmapResolution;
+        int splatmapLayers = terrainData.alphamapLayers;
+
+        // Ensure correct dimensions for the alphamap array
+        float[,,] splatmaps = new float[heightmapWidth, heightmapHeight, splatmapLayers];
+
+        // Loop through each point on the heightmap
+        for (int x = 0; x < heightmapWidth; x++)
+        {
+            for (int y = 0; y < heightmapHeight; y++)
+            {
+                // Get the height at this point
+                float height = terrainData.GetHeight(x, y);
+
+                // Determine the blend weights for each texture based on height
+                float grassWeight = Mathf.Clamp01((height - 0) / 100f); // Grass texture up to height 100
+                float rockWeight = Mathf.Clamp01((height - 100f) / 100f); // Rock texture from height 100 to 200
+                float snowWeight = Mathf.Clamp01((height - 200f) / 800f); // Snow texture from height 200 to 1000
+
+                // Set the blend weights in the alphamap array
+                splatmaps[x, y, 0] = grassWeight; // Grass texture
+                splatmaps[x, y, 1] = rockWeight; // Rock texture
+                splatmaps[x, y, 2] = snowWeight; // Snow texture
+
+                // Ensure that the sum of blend weights does not exceed 1
+                float totalBlend = grassWeight + rockWeight + snowWeight;
+                if (totalBlend > 1)
+                {
+                    float scale = 1 / totalBlend;
+                    splatmaps[x, y, 0] *= scale;
+                    splatmaps[x, y, 1] *= scale;
+                    splatmaps[x, y, 2] *= scale;
+                }
+            }
+        }
+
+        // Apply the alphamap to the terrain
+        terrainData.SetAlphamaps(0, 0, splatmaps);
     }
 
     public void UpdateTerrain()

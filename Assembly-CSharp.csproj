@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Kinect\ColorSourceManager.cs" />
     <Compile Include="Assets\Scripts\ViewerScript.cs" />
     <Compile Include="Assets\Scripts\WaterSimulationScript.cs" />
+    <Compile Include="Assets\Scripts\AssignSplatMap.cs" />
     <Compile Include="Assets\Scripts\Kinect\InfraredSourceManager.cs" />
     <Compile Include="Assets\Scripts\Kinect\InfraredSourceView.cs" />
     <Compile Include="Assets\Scripts\Kinect\DepthSourceManager.cs" />
