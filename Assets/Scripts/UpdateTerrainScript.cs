@@ -5,19 +5,11 @@ using UnityEngine;
 
 public class UpdateTerrainScript : MonoBehaviour
 {
-    [SerializeField]
-    private Texture2D sandTexture;
-    [SerializeField]
-    private Texture2D grassTexture;
-    [SerializeField]
-    private Texture2D rockTexture;
-    [SerializeField]
-    private Texture2D snowTexture;
-
     private Terrain _terrain;
 
     [SerializeField]
     private MeasureDepth measureDepth;
+    private AssignSplatMap _assignSplatMap;
 
     [SerializeField]
     private float updateTime = 3f;
@@ -27,6 +19,7 @@ public class UpdateTerrainScript : MonoBehaviour
     {
         _time = 0f;
         _terrain = GetComponent<Terrain>();
+        _assignSplatMap = GetComponent<AssignSplatMap>();
 
         //ApplyTexturesBasedOnHeight();
     }
@@ -37,7 +30,9 @@ public class UpdateTerrainScript : MonoBehaviour
         if (_time > updateTime)
         {
             //UpdateTerrain();
+            _assignSplatMap.ApplyTexture((int)AssignSplatMap.TextureMode.Real);
             _time -= updateTime;
+            Debug.Log("Updatin terrain");
         }
     }
 
