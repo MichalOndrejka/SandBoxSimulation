@@ -33,6 +33,8 @@ public class AssignSplatMap : MonoBehaviour
 
         // Get a reference to the terrain data
         _terrainData = _terrain.terrainData;
+
+        ApplyTexture((int)TextureMode.Real);
     }
 
     public void ApplyTexture(int textureMode)

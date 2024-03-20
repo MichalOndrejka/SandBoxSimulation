@@ -36,7 +36,6 @@ public class MeasureDepth : MonoBehaviour
         if (_time > measureFrequency)
         {
             depthData = multiSourceManager.GetDepthData();
-            //updateTerrainScript.UpdateTerrain();
             UpdateTerrainTexture();
             _time -= measureFrequency;
         }

@@ -31,10 +31,30 @@ public class WaterSimulationScript : MonoBehaviour
         if (depthData.Length != 0) {
             Vector2Int position = (Vector2Int)GetHandPosition();
         }
+
+        // Check for mouse click
+        if (Input.GetMouseButtonDown(0))
+        {
+            // Get mouse position in world coordinates
+            Vector3 clickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            clickPosition.z = 0; // Ensure z-coordinate is set to 0 (assuming 2D)
+
+            // Call AddWater function with click position and water radius
+            AddWater((int)clickPosition.x, (int)clickPosition.y, waterRadius);
+            Debug.Log("Adding Water, X:" + clickPosition.x + ", Y :" + clickPosition.y);
+            UpdateWaterTexture();
+
+            if (!animating)
+            {
+                InvokeRepeating(nameof(animateWater), 0f, waterSpeed);
+                animating = true;
+            }
+        }
     }
 
     private Vector2Int GetHandPosition()
     {
+        Debug.Log("Getting Hand");
         Vector2Int handPosition = new Vector2Int(-1, -1);
 
         int minX = 100;

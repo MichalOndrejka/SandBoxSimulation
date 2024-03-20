@@ -142,7 +142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &73149191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,6 +255,7 @@ GameObject:
   - component: {fileID: 81330113}
   - component: {fileID: 81330112}
   - component: {fileID: 81330111}
+  - component: {fileID: 81330114}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -336,6 +337,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
+--- !u!114 &81330114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81330110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 239822cc520a35040931426f31fd2fdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
 --- !u!1 &343928561
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,10 +456,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6974b5b56e559c74ba90c697d1c5c67f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sandTexture: {fileID: 2800000, guid: 54991fffd3981ec4a8298fe4a33d5761, type: 3}
-  grassTexture: {fileID: 2800000, guid: 5c940d299a8e3984f939c5e6ad6abbcb, type: 3}
-  rockTexture: {fileID: 2800000, guid: 95f9990bbaf80144280a8a14f56f1909, type: 3}
-  snowTexture: {fileID: 2800000, guid: 8c7e9803555b4f84486f8bb835defcee, type: 3}
   measureDepth: {fileID: 1294677224}
   updateTime: 3
 --- !u!114 &343928566
@@ -525,7 +535,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &867527912
 RectTransform:
   m_ObjectHideFlags: 0
@@ -746,7 +756,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &1698161624
 Rigidbody:
   m_ObjectHideFlags: 0

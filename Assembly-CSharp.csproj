@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\Kinect\BodySourceManager.cs" />
     <Compile Include="Assets\Scripts\Kinect\BodySourceView.cs" />
     <Compile Include="Assets\Scripts\Kinect\ColorSourceView.cs" />
+    <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Kinect\MultiSourceManager.cs" />
   </ItemGroup>
   <ItemGroup>
