@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using static AssignSplatMap;
 
 public class UpdateTerrainScript : MonoBehaviour
 {
@@ -9,27 +10,13 @@ public class UpdateTerrainScript : MonoBehaviour
 
     [SerializeField]
     private MeasureDepth measureDepth;
-    private AssignSplatMap _assignSplatMap;
-
     [SerializeField]
-    private float updateTime = 3f;
-    float _time;
+    private AssignSplatMap assignSplatMap;
 
     void Start()
     {
-        _time = 0f;
         _terrain = GetComponent<Terrain>();
-        _assignSplatMap = GetComponent<AssignSplatMap>(); //?
-    }
-
-    private void Update()
-    {
-        _time += Time.deltaTime;
-        if (_time > updateTime)
-        {
-            //UpdateTerrain();
-            _time -= updateTime;
-        }
+        assignSplatMap = GetComponent<AssignSplatMap>();
     }
 
     public void UpdateTerrain()
@@ -43,18 +30,8 @@ public class UpdateTerrainScript : MonoBehaviour
         float[,] heights = new float[terrainData.heightmapResolution, terrainData.heightmapResolution];
 
         // Find the minimum and maximum depth values
-        ushort minDepth = ushort.MaxValue;
-        ushort maxDepth = ushort.MinValue;
-        foreach (ushort depth in measureDepth.depthData)
-        {
-            if (depth < minDepth)
-                minDepth = depth;
-            if (depth > maxDepth)
-                maxDepth = depth;
-        }
-
-        minDepth = (ushort)(measureDepth.minDepth + 100);
-        maxDepth = measureDepth.maxDepth;
+        ushort minDepth = (ushort)(measureDepth.minDepth + 100);
+        ushort maxDepth = measureDepth.maxDepth;        
 
         float depthRange = maxDepth - minDepth;
         for (int x = 0; x < measureDepth.depthResolution.x; x++)
@@ -63,21 +40,23 @@ public class UpdateTerrainScript : MonoBehaviour
             {
                 int index = measureDepth.depthResolution.x * y + x;
                 ushort depth = measureDepth.depthData[index];
+
                 if (depth == 0 && index != 0) depth = measureDepth.depthData[index - 1];
 
-                float normalizedDepth = (float) 1 - ((depth - minDepth) / depthRange);
-                normalizedDepth = normalizedDepth / 3;
-                heights[x, measureDepth.depthResolution.y - 1 - y] = normalizedDepth; // Assign normalized depth as height
+                float normalizedDepth = 1 - ((depth - minDepth) / depthRange);
+                normalizedDepth = normalizedDepth / 6;
+                heights[x, measureDepth.depthResolution.y - 1 - y] = normalizedDepth;
 
             }
 
         }
-
-        // Smooth the heights
+        
         SmoothHeights(heights, terrainData.heightmapResolution);
 
 
         terrainData.SetHeights(0, 0, heights);
+
+        assignSplatMap.ApplyTexture((int)TextureMode.Real);
         Debug.Log("TerrainData updated");
     }
 

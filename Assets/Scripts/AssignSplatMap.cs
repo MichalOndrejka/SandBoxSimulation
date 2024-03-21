@@ -80,9 +80,9 @@ public class AssignSplatMap : MonoBehaviour
 
     private void ApplyRealTexture(float height)
     {
-        if (height < 100) _splatWeights[(int)Texture.Sand] = 1f;
-        else if (height < 150) _splatWeights[(int)Texture.Grass] = 1f;
-        else if (height < 200) _splatWeights[(int)Texture.Rock] = 1f;
+        if (height < 50) _splatWeights[(int)Texture.Sand] = 1f;
+        else if (height < 100) _splatWeights[(int)Texture.Grass] = 1f;
+        else if (height < 150) _splatWeights[(int)Texture.Rock] = 1f;
         else _splatWeights[(int)Texture.Snow] = 1f;
     }
 
@@ -90,8 +90,8 @@ public class AssignSplatMap : MonoBehaviour
     {
         if (height < 50) _splatWeights[(int)Texture.DarkBlue] = 1f;
         else if (height < 100) _splatWeights[(int)Texture.LightBlue] = 1f;
-        else if (height < 200) _splatWeights[(int)Texture.Green] = 1f;
-        else if (height < 250) _splatWeights[(int)Texture.Orange] = 1f;
+        else if (height < 150) _splatWeights[(int)Texture.Green] = 1f;
+        else if (height < 200) _splatWeights[(int)Texture.Orange] = 1f;
         else _splatWeights[(int)Texture.Red] = 1f;
     }
 }
