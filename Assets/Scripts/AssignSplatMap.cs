@@ -7,6 +7,9 @@ public class AssignSplatMap : MonoBehaviour
     private TerrainData _terrainData;
 
     private float[] _splatWeights;
+
+    [SerializeField]
+    private int  _balanceHeightFactor;
     enum Texture
     {
         Sand,
@@ -51,6 +54,8 @@ public class AssignSplatMap : MonoBehaviour
 
                 // Sample the height at this location (note GetHeight expects int coordinates corresponding to locations in the heightmap array)
                 float height = _terrainData.GetHeight(Mathf.RoundToInt(y_01 * _terrainData.heightmapResolution), Mathf.RoundToInt(x_01 * _terrainData.heightmapResolution));
+
+                height -= y * _balanceHeightFactor;
 
                 // Setup an array to record the mix of texture weights at this point
                 _splatWeights = new float[_terrainData.alphamapLayers];
