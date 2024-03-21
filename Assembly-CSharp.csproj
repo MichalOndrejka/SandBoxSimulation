@@ -65,8 +65,10 @@
     <Compile Include="Assets\Scripts\MeasureDepth.cs" />
     <Compile Include="Assets\Scripts\Kinect\ColorSourceManager.cs" />
     <Compile Include="Assets\Scripts\ViewerScript.cs" />
+    <Compile Include="Assets\Scripts\BlurController.cs" />
     <Compile Include="Assets\Scripts\WaterSimulationScript.cs" />
     <Compile Include="Assets\Scripts\AssignSplatMap.cs" />
+    <Compile Include="Assets\Scripts\LiquidParticleController.cs" />
     <Compile Include="Assets\Scripts\Kinect\InfraredSourceManager.cs" />
     <Compile Include="Assets\Scripts\Kinect\InfraredSourceView.cs" />
     <Compile Include="Assets\Scripts\Kinect\DepthSourceManager.cs" />
@@ -74,8 +76,13 @@
     <Compile Include="Assets\Scripts\Kinect\BodySourceManager.cs" />
     <Compile Include="Assets\Scripts\Kinect\BodySourceView.cs" />
     <Compile Include="Assets\Scripts\Kinect\ColorSourceView.cs" />
+    <Compile Include="Assets\Scripts\WaterSpawnController.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Kinect\MultiSourceManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Shaders\UnlitTransparent.shader" />
+    <None Include="Assets\Shaders\BlurEffect.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
