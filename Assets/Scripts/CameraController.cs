@@ -1,20 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditorInternal.ReorderableList;
 
 public class CameraController : MonoBehaviour
 {
     [SerializeField]
     private float moveSpeed = 10f;
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private bool canMove;
+
+    private Camera _mainCamera;
+
+    private float _defaultX = 442.97f;
+    private float _defaultY = 654.2f;
+    private float _defaultZ = 545.7f;
+    private float _defaultSize = 205.6f;
+    private void Start()
     {
-        
+        _mainCamera = Camera.main;
+        LoadCameraSettings();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!canMove) return;
         // Get input for movement
         float verticalInput = Input.GetAxis("Vertical");
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -31,5 +42,20 @@ public class CameraController : MonoBehaviour
 
         // Move the camera
         transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+    }
+
+    private void LoadCameraSettings()
+    {
+        // Load camera position
+        float posX = PlayerPrefs.GetFloat("CameraPositionX", _defaultX);
+        float posY = PlayerPrefs.GetFloat("CameraPositionY", _defaultY);
+        float posZ = PlayerPrefs.GetFloat("CameraPositionZ", _defaultZ);
+
+        Vector3 cameraPosition = new Vector3(posX, posY, posZ);
+        _mainCamera.transform.position = cameraPosition;
+
+        // Load camera size
+        float cameraSize = PlayerPrefs.GetFloat("CameraSize", _defaultSize);
+        _mainCamera.orthographicSize = cameraSize;
     }
 }

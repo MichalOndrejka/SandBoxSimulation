@@ -55,9 +55,9 @@ public class UpdateTerrainScript : MonoBehaviour
 
 
         terrainData.SetHeights(0, 0, heights);
+        Debug.Log("TerrainData updated");
 
         assignSplatMap.ApplyTexture((int)TextureMode.Real);
-        Debug.Log("TerrainData updated");
     }
 
     void SmoothHeights(float[,] heights, int resolution)

@@ -10,6 +10,9 @@ public class WaterSpawnController : MonoBehaviour
     private GameObject waterParticlePrefab;
 
     [SerializeField]
+    private MeasureDepth measureDepth;
+
+    [SerializeField]
     private int waterSpawnYOffset = 10;
     [SerializeField]
     private int waterSpawnOffset = 5;
@@ -18,8 +21,11 @@ public class WaterSpawnController : MonoBehaviour
     [SerializeField]
     private int numberToSpawnOnZ = 3;
 
+    private Vector3 _handPosition;
+
     void Update()
     {
+        _handPosition = GetHandPosition();
         // Check for mouse click
         if (Input.GetMouseButtonDown(0)) // Left mouse button clicked
         {
@@ -34,6 +40,9 @@ public class WaterSpawnController : MonoBehaviour
                 // Spawn water particle at the hit position
                 SpawnWaterParticle(hit.point);
             }
+        } else if (_handPosition != Vector3.zero)
+        {
+            SpawnWaterParticle(_handPosition);
         }
     }
 
@@ -51,5 +60,51 @@ public class WaterSpawnController : MonoBehaviour
                 Instantiate(waterParticlePrefab, tempPosition, Quaternion.identity);
             }
         }
+    }
+
+    private Vector3 GetHandPosition()
+    {
+        if (measureDepth.depthData.Length == 0)
+        {
+            return new Vector3(0, 0, 0);
+        }
+
+        Debug.Log("Getting Hand Position");
+
+        int minX = 100;
+        int minY = 70;
+        int maxX = measureDepth.depthResolution.x - 50;
+        int maxY = measureDepth.depthResolution.y - 100;
+        ushort minDepth = 900;
+
+        int sumX = 0;
+        int sumY = 0;
+        int count = 0;
+
+        for (int x = minX; x < maxX; x++)
+        {
+            for (int y = minY; y < maxY; y++)
+            {
+                int index = y * measureDepth.depthResolution.x + x;
+                ushort depth = measureDepth.depthData[index];
+                if (depth < minDepth && depth != 0)
+                {
+                    sumX += x;
+                    sumY += y;
+                    count++;
+                }
+            }
+        }
+
+        if (count == 0) {
+            return new Vector3(0, 0, 0);
+        }
+
+        int avgX = sumX / count;
+        int avgZ = sumY / count;
+        int height = measureDepth.depthData[avgZ * measureDepth.depthResolution.x + avgX];
+        height -= measureDepth.maxDepth;
+
+        return new Vector3(avgX, height, avgZ);
     }
 }
