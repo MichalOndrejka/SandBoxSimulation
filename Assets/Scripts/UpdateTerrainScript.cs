@@ -21,12 +21,12 @@ public class UpdateTerrainScript : MonoBehaviour
 
     public void UpdateTerrain()
     {
-        return;
         TerrainData terrainData = _terrain.terrainData;
 
         if (terrainData == null) return;
 
         terrainData.heightmapResolution = measureDepth.depthResolution.x;
+        terrainData.size = new Vector3(770, terrainData.size.y, 1000);
 
         float[,] heights = new float[terrainData.heightmapResolution, terrainData.heightmapResolution];
 

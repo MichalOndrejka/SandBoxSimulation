@@ -41,6 +41,9 @@ public class WaterSpawnController : MonoBehaviour
     [SerializeField]
     private Material textureWithShader;
 
+    [SerializeField]
+    private TerrainData terrainData;
+
     private void Awake()
     {
         if (spawnWater) Time.timeScale = waterTimeScale;
@@ -71,7 +74,7 @@ public class WaterSpawnController : MonoBehaviour
         if (_time / Time.timeScale > waterSpawnCooldown)
         {
             _handPosition = GetHandPosition();
-            _time -= waterSpawnCooldown * Time.timeScale;
+            _time = 0f;
             if (_handPosition != Vector3.zero)
             {
                 SpawnParticle(_handPosition);
@@ -129,8 +132,8 @@ public class WaterSpawnController : MonoBehaviour
 
         int minX = 100;
         int minY = 70;
-        int maxX = measureDepth.depthResolution.x - 50;
-        int maxY = measureDepth.depthResolution.y - 100;
+        int maxX = measureDepth.depthResolution.x - minX;
+        int maxY = measureDepth.depthResolution.y - minY;
         ushort minDepth = 900;
 
         int sumX = 0;
@@ -168,8 +171,8 @@ public class WaterSpawnController : MonoBehaviour
         }
         float posX = (float)avgX / (float)measureDepth.depthResolution.x;
         float posZ = (float)avgZ / (float)measureDepth.depthResolution.y;
-        posX *= 1000;
-        posZ *= 800;
+        posX *= terrainData.size.z;
+        posZ *= terrainData.size.x;
 
         Debug.Log("Spawning Water at X:" + posZ + ", Y:" + height + ", Z:" + posX);
         return new Vector3(800 - posZ, height, posX);
