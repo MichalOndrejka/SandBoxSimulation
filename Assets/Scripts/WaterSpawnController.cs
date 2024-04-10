@@ -5,6 +5,8 @@ using UnityEngine;
 public class WaterSpawnController : MonoBehaviour
 {
     [SerializeField]
+    private Terrain terrain;
+    [SerializeField]
     private LayerMask terrainLayerMask;
     [SerializeField]
     private GameObject waterParticlePrefab;
@@ -13,19 +15,39 @@ public class WaterSpawnController : MonoBehaviour
     private MeasureDepth measureDepth;
 
     [SerializeField]
-    private int waterSpawnYOffset = 10;
+    private int waterSpawnYOffset;
     [SerializeField]
-    private int waterSpawnOffset = 5;
+    private int waterSpawnOffset;
     [SerializeField]
-    private int numberToSpawnOnX = 3;
+    private int numberToSpawnOnX;
     [SerializeField]
-    private int numberToSpawnOnZ = 3;
+    private int numberToSpawnOnY;
+    [SerializeField]
+    private int numberToSpawnOnZ;
 
     private Vector3 _handPosition;
 
+    [SerializeField]
+    private float waterSpawnCooldown;
+    float _time;
+
+    private void Start()
+    {
+        _time = 0f;
+    }
+
     void Update()
     {
-        _handPosition = GetHandPosition();
+        _time += Time.deltaTime;
+        if (_time / measureDepth.customTimeScale > waterSpawnCooldown)
+        {
+            _handPosition = GetHandPosition();
+            _time -= waterSpawnCooldown * measureDepth.customTimeScale;
+            if (_handPosition != Vector3.zero)
+            {
+                SpawnWaterParticle(_handPosition);
+            }
+        }
         // Check for mouse click
         if (Input.GetMouseButtonDown(0)) // Left mouse button clicked
         {
@@ -40,10 +62,9 @@ public class WaterSpawnController : MonoBehaviour
                 // Spawn water particle at the hit position
                 SpawnWaterParticle(hit.point);
             }
-        } else if (_handPosition != Vector3.zero)
-        {
-            SpawnWaterParticle(_handPosition);
         }
+
+        //SimulationStep();
     }
 
     void SpawnWaterParticle(Vector3 position)
@@ -53,18 +74,24 @@ public class WaterSpawnController : MonoBehaviour
         {
             for (int z = 0; z < numberToSpawnOnZ; z++)
             {
-                tempPosition.x = position.x + x * waterSpawnOffset;
-                tempPosition.y = position.y + waterSpawnOffset;
-                tempPosition.z = position.z + z * waterSpawnOffset;
-                // Instantiate the water particle prefab at the given position
-                Instantiate(waterParticlePrefab, tempPosition, Quaternion.identity);
+                for (int y = 0; y < numberToSpawnOnY; y++)
+                {
+                    tempPosition.x = position.x + x * waterSpawnOffset;
+                    tempPosition.y = position.y + y * waterSpawnOffset;
+                    tempPosition.z = position.z + z * waterSpawnOffset;
+                    // Instantiate the water particle prefab as a child of the current GameObject
+                    GameObject waterParticle = Instantiate(waterParticlePrefab, tempPosition, Quaternion.identity);
+
+                    // Set the instantiated particle as a child of the current GameObject
+                    waterParticle.transform.parent = this.transform;
+                }
             }
         }
     }
 
     private Vector3 GetHandPosition()
     {
-        if (measureDepth.depthData.Length == 0)
+        if (measureDepth.rawDepthData.Length == 0)
         {
             return new Vector3(0, 0, 0);
         }
@@ -86,7 +113,7 @@ public class WaterSpawnController : MonoBehaviour
             for (int y = minY; y < maxY; y++)
             {
                 int index = y * measureDepth.depthResolution.x + x;
-                ushort depth = measureDepth.depthData[index];
+                ushort depth = measureDepth.rawDepthData[index];
                 if (depth < minDepth && depth != 0)
                 {
                     sumX += x;
@@ -97,14 +124,26 @@ public class WaterSpawnController : MonoBehaviour
         }
 
         if (count == 0) {
+            Debug.Log("No hand detected");
             return new Vector3(0, 0, 0);
         }
 
         int avgX = sumX / count;
         int avgZ = sumY / count;
-        int height = measureDepth.depthData[avgZ * measureDepth.depthResolution.x + avgX];
-        height -= measureDepth.maxDepth;
+        Vector3 handPos = terrain.transform.InverseTransformPoint(new Vector3(avgX, 0f, avgZ));
+        float height = terrain.SampleHeight(handPos);
+        if (height == 600)
+        {
+            Debug.Log("Invalid height");
+            return new Vector3(0, 0, 0);
+        }
+        float posX = (float)avgX / (float)measureDepth.depthResolution.x;
+        float posZ = (float)avgZ / (float)measureDepth.depthResolution.y;
+        posX *= 1000;
+        posZ *= 800;
 
-        return new Vector3(avgX, height, avgZ);
+        Debug.Log("Spawning Water at X:" + posZ + ", Y:" + height + ", Z:" + posX);
+        return new Vector3(800 - posZ, height, posX);
+
     }
 }

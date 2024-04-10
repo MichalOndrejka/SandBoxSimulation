@@ -451,6 +451,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _balanceHeightFactor: 0
+  currentTextureMode: 1
 --- !u!1 &586363994
 GameObject:
   m_ObjectHideFlags: 0
@@ -778,6 +779,7 @@ MonoBehaviour:
   maxDepth: 1170
   minDepth: 900
   depthData: 
+  rawDepthData: 
   measureFrequency: 4
   sensorAngle: -30
   verticalScaleFactor: 0.1

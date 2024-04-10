@@ -50,29 +50,10 @@ public class UpdateTerrainScript : MonoBehaviour
             }
 
         }
-        
-        SmoothHeights(heights, terrainData.heightmapResolution);
-
 
         terrainData.SetHeights(0, 0, heights);
         Debug.Log("TerrainData updated");
 
-        assignSplatMap.ApplyTexture((int)TextureMode.Real);
-    }
-
-    void SmoothHeights(float[,] heights, int resolution)
-    {
-        for (int x = 1; x < resolution - 1; x++)
-        {
-            for (int y = 1; y < resolution - 1; y++)
-            {
-                float avgHeight = (
-                    heights[x - 1, y - 1] + heights[x, y - 1] + heights[x + 1, y - 1] +
-                    heights[x - 1, y] + heights[x, y] + heights[x + 1, y] +
-                    heights[x - 1, y + 1] + heights[x, y + 1] + heights[x + 1, y + 1]
-                ) / 9f;
-                heights[x, y] = avgHeight;
-            }
-        }
+        assignSplatMap.ApplyTexture();
     }
 }

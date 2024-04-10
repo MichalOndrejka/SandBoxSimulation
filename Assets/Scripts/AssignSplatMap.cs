@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Linq; // used for Sum of array
+using System.Linq;
 
 public class AssignSplatMap : MonoBehaviour
 {
@@ -21,13 +21,20 @@ public class AssignSplatMap : MonoBehaviour
         Green,
         Orange,
         Red,
+        Black,
     }
 
     public enum TextureMode
     {
         Real,
         Colorful,
+        ColorfulContour,
+        Vulcanic,
+        Exotic
     }
+
+
+    public int currentTextureMode;
 
     void Start()
     {
@@ -37,10 +44,10 @@ public class AssignSplatMap : MonoBehaviour
         // Get a reference to the terrain data
         _terrainData = _terrain.terrainData;
 
-        ApplyTexture((int)TextureMode.Real);
+        ApplyTexture();
     }
 
-    public void ApplyTexture(int textureMode)
+    public void ApplyTexture()
     {
         float[,,] splatmapData = new float[_terrainData.alphamapWidth, _terrainData.alphamapHeight, _terrainData.alphamapLayers];
 
@@ -60,8 +67,7 @@ public class AssignSplatMap : MonoBehaviour
                 // Setup an array to record the mix of texture weights at this point
                 _splatWeights = new float[_terrainData.alphamapLayers];
 
-                if (textureMode == (int)TextureMode.Real) ApplyRealTexture(height);
-                else if (textureMode == (int)TextureMode.Colorful) ApplyColorfulTexture(height);
+                SetAlpha(height);
 
                 // Sum of all textures weights must add to 1, so calculate normalization factor from sum of weights
                 float z = _splatWeights.Sum();
@@ -85,6 +91,15 @@ public class AssignSplatMap : MonoBehaviour
         Debug.Log("Texture applied");
     }
 
+    private void SetAlpha(float height)
+    {
+        if (currentTextureMode == (int)TextureMode.Real) ApplyRealTexture(height);
+        else if (currentTextureMode == (int)TextureMode.Colorful) ApplyColorfulTexture(height);
+        else if (currentTextureMode == (int)TextureMode.ColorfulContour) ApplyColorfulContourTexture(height);
+
+    }
+
+
     private void ApplyRealTexture(float height)
     {
         if (height < 50) _splatWeights[(int)Texture.Sand] = 1f;
@@ -95,10 +110,42 @@ public class AssignSplatMap : MonoBehaviour
 
     private void ApplyColorfulTexture(float height)
     {
-        if (height < 50) _splatWeights[(int)Texture.DarkBlue] = 1f;
-        else if (height < 100) _splatWeights[(int)Texture.LightBlue] = 1f;
-        else if (height < 150) _splatWeights[(int)Texture.Green] = 1f;
-        else if (height < 200) _splatWeights[(int)Texture.Orange] = 1f;
+        float skip = 10;
+        float step = 25;
+        if (height < skip + step * 1) _splatWeights[(int)Texture.DarkBlue] = 1f;
+        else if (height < skip + step * 2) _splatWeights[(int)Texture.LightBlue] = 1f;
+        else if (height < skip + step * 3) _splatWeights[(int)Texture.Green] = 1f;
+        else if (height < skip + step * 4) _splatWeights[(int)Texture.Orange] = 1f;
         else _splatWeights[(int)Texture.Red] = 1f;
+    }
+
+    private void ApplyColorfulContourTexture(float height)
+    {
+        float skip = 10;
+        float step = 25;
+        float contours_per_step = 2;
+        float contour_height = 2;
+        if ((height - skip + contour_height / 2) % ((step) / contours_per_step) < contour_height) _splatWeights[(int)Texture.Black] = 1f;
+        else if (height < skip + step * 1) _splatWeights[(int)Texture.DarkBlue] = 1f;
+        else if (height < skip + step * 2) _splatWeights[(int)Texture.LightBlue] = 1f;
+        else if (height < skip + step * 3) _splatWeights[(int)Texture.Green] = 1f;
+        else if (height < skip + step * 4) _splatWeights[(int)Texture.Orange] = 1f;
+        else _splatWeights[(int)Texture.Red] = 1f;
+    }
+
+    private void ApplyVulcanicTexture(float height)
+    {
+        if (height < 50) _splatWeights[(int)Texture.Sand] = 1f;
+        else if (height < 100) _splatWeights[(int)Texture.Grass] = 1f;
+        else if (height < 150) _splatWeights[(int)Texture.Rock] = 1f;
+        else _splatWeights[(int)Texture.Snow] = 1f;
+    }
+
+    private void ApplyExoticTexture(float height)
+    {
+        if (height < 50) _splatWeights[(int)Texture.Sand] = 1f;
+        else if (height < 100) _splatWeights[(int)Texture.Grass] = 1f;
+        else if (height < 150) _splatWeights[(int)Texture.Rock] = 1f;
+        else _splatWeights[(int)Texture.Snow] = 1f;
     }
 }
