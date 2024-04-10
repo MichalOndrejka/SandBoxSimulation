@@ -1,6 +1,6 @@
 // Unity based gaussian blue shader
 
-Shader "VueCode/BlurEffect" {
+Shader "BlurEffect" {
 	Properties { _MainTex ("", any) = "" {} }
 	CGINCLUDE
 	#include "UnityCG.cginc"

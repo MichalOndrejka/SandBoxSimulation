@@ -9,7 +9,7 @@ public class WaterSpawnController : MonoBehaviour
     [SerializeField]
     private LayerMask terrainLayerMask;
     [SerializeField]
-    private GameObject waterParticlePrefab;
+    private GameObject liquidParticlePrefab;
 
     [SerializeField]
     private MeasureDepth measureDepth;
@@ -31,6 +31,22 @@ public class WaterSpawnController : MonoBehaviour
     private float waterSpawnCooldown;
     float _time;
 
+    private float waterTimeScale = 2f;
+    private float lavaTimeScale = 0.4f;
+    public bool spawnWater;
+
+    public Color WaterColor;
+    public Color LavaColor;
+
+    [SerializeField]
+    private Material textureWithShader;
+
+    private void Awake()
+    {
+        if (spawnWater) Time.timeScale = waterTimeScale;
+        else Time.timeScale = lavaTimeScale;
+    }
+
     private void Start()
     {
         _time = 0f;
@@ -38,14 +54,27 @@ public class WaterSpawnController : MonoBehaviour
 
     void Update()
     {
+        if (spawnWater)
+        { 
+            textureWithShader.SetColor("_Color", WaterColor);
+            // Set the stroke alpha (_Stroke) property
+            textureWithShader.SetFloat("_Stroke", 0.1f);
+
+            // Set the water transparency (_Cutoff) property
+            textureWithShader.SetFloat("_Cutoff", 1.0f - 0.5f);
+        } else
+        {
+            textureWithShader.SetColor("_Color", LavaColor);
+            textureWithShader.SetFloat("_Cutoff", 1.0f - 0.1f);
+        }
         _time += Time.deltaTime;
-        if (_time / measureDepth.customTimeScale > waterSpawnCooldown)
+        if (_time / Time.timeScale > waterSpawnCooldown)
         {
             _handPosition = GetHandPosition();
-            _time -= waterSpawnCooldown * measureDepth.customTimeScale;
+            _time -= waterSpawnCooldown * Time.timeScale;
             if (_handPosition != Vector3.zero)
             {
-                SpawnWaterParticle(_handPosition);
+                SpawnParticle(_handPosition);
             }
         }
         // Check for mouse click
@@ -60,14 +89,14 @@ public class WaterSpawnController : MonoBehaviour
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, terrainLayerMask))
             {
                 // Spawn water particle at the hit position
-                SpawnWaterParticle(hit.point);
+                SpawnParticle(hit.point);
             }
         }
 
         //SimulationStep();
     }
 
-    void SpawnWaterParticle(Vector3 position)
+    void SpawnParticle(Vector3 position)
     {
         Vector3 tempPosition = position;
         for(int x = 0; x < numberToSpawnOnX; x++)
@@ -80,10 +109,10 @@ public class WaterSpawnController : MonoBehaviour
                     tempPosition.y = position.y + y * waterSpawnOffset;
                     tempPosition.z = position.z + z * waterSpawnOffset;
                     // Instantiate the water particle prefab as a child of the current GameObject
-                    GameObject waterParticle = Instantiate(waterParticlePrefab, tempPosition, Quaternion.identity);
+                    GameObject particle = Instantiate(liquidParticlePrefab, tempPosition, Quaternion.identity);
 
                     // Set the instantiated particle as a child of the current GameObject
-                    waterParticle.transform.parent = this.transform;
+                    particle.transform.parent = this.transform;
                 }
             }
         }

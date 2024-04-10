@@ -29,12 +29,9 @@ public class MeasureDepth : MonoBehaviour
     [SerializeField]
     private float verticalScaleFactor = 0.1f;
 
-    public float customTimeScale = 4f;
-
     private void Start()
     {
         _time = 0f;
-        Time.timeScale = customTimeScale;
         initializeDepthData();
     }
 
@@ -42,11 +39,11 @@ public class MeasureDepth : MonoBehaviour
     {
         rawDepthData = multiSourceManager.GetDepthData();
         _time += Time.deltaTime;
-        if (_time / customTimeScale > measureFrequency)
+        if (_time / Time.timeScale > measureFrequency)
         {
             processDepthData();
             updateTerrainScript.UpdateTerrain();
-            _time -= measureFrequency * customTimeScale;
+            _time -= measureFrequency * Time.timeScale;
             Debug.Log("Updating terrain heights");
         }
     }

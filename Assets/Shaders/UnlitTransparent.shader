@@ -1,4 +1,4 @@
-Shader "VueCode/UnlitMod"
+Shader "UnlitMod"
 {
 	Properties
 	{
@@ -10,7 +10,7 @@ Shader "VueCode/UnlitMod"
 		_Stroke ("Stroke Alpha", Range(0,1)) = 0.1
 		_StrokeColor ("Stroke Color", Color) = (1,1,1,1)
 
-				_Stroke2 ("Stroke Alpha", Range(0,1)) = 0.1
+		_Stroke2 ("Stroke Alpha", Range(0,1)) = 0.1
 		_StrokeColor2 ("Stroke Color", Color) = (1,1,1,1)
 	}
 	SubShader
