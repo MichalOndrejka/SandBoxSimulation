@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField]
-    private float moveSpeed = 10f;
+    public float moveSpeed = 10f;
     [SerializeField]
     private bool canMove;
 
@@ -13,10 +12,21 @@ public class CameraController : MonoBehaviour
     private float _defaultY = 654.2f;
     private float _defaultZ = 545.7f;
     private float _defaultSize = 205.6f;
+
+    private bool _moveLeft;
+    private bool _moveRight;
+    private bool _moveUp;
+    private bool _moveDown;
+
     private void Start()
     {
         _mainCamera = Camera.main;
         LoadCameraSettings();
+
+        _moveLeft = false;
+        _moveRight = false;
+        _moveUp = false;
+        _moveDown = false;
     }
 
     // Update is called once per frame

@@ -1,21 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class Calibration : MonoBehaviour
 {
     private Camera _mainCamera;
 
-    private float _defaultX = 442.97f;
-    private float _defaultY = 654.2f;
-    private float _defaultZ = 545.7f;
-    private float _defaultSize = 205.6f;
-
     private void Start()
     {
         _mainCamera = Camera.main;
+    }
+
+    public void CancelCameraSettings()
+    {
+        GoToMainMenu();
     }
 
     public void SaveCameraSettings()
@@ -30,10 +27,14 @@ public class Calibration : MonoBehaviour
 
         // Save PlayerPrefs to disk
         PlayerPrefs.Save();
+
+        GoToMainMenu();
     }
 
     public void GoToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
     }
+
+
 }
