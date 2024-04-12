@@ -82,7 +82,6 @@ public class WaterSpawnController : MonoBehaviour
         // Check for mouse click
         if (Input.GetMouseButtonDown(0)) // Left mouse button clicked
         {
-            Debug.Log("clicked");
             // Cast a ray from the camera to the terrain layer
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -127,10 +126,8 @@ public class WaterSpawnController : MonoBehaviour
             return new Vector3(0, 0, 0);
         }
 
-        Debug.Log("Getting Hand Position");
-
         int minX = 100;
-        int minY = 70;
+        int minY = 100;
         int maxX = measureDepth.depthResolution.x - minX;
         int maxY = measureDepth.depthResolution.y - minY;
         ushort minDepth = 900;
@@ -155,7 +152,6 @@ public class WaterSpawnController : MonoBehaviour
         }
 
         if (count == 0) {
-            Debug.Log("No hand detected");
             return new Vector3(0, 0, 0);
         }
 
@@ -163,10 +159,8 @@ public class WaterSpawnController : MonoBehaviour
         int avgZ = sumY / count;
         Vector3 handPos = terrain.transform.InverseTransformPoint(new Vector3(avgX, 0f, avgZ));
         float height = terrain.SampleHeight(handPos);
-        Debug.Log(height);
         if (height == 600)
         {
-            Debug.Log("Invalid height");
             return new Vector3(0, 0, 0);
         }
         float posX = (float)avgX / (float)measureDepth.depthResolution.x;
@@ -174,7 +168,6 @@ public class WaterSpawnController : MonoBehaviour
         posX *= terrainData.size.z;
         posZ *= terrainData.size.x;
 
-        Debug.Log("Spawning Water at X:" + posZ + ", Y:" + height + ", Z:" + posX);
         return new Vector3(800 - posZ, 150, posX);
     }
 

@@ -127,8 +127,6 @@ public class AssignSplatMap : MonoBehaviour
 
         // Finally assign the new splatmap to the terrainData:
         _terrainData.SetAlphamaps(0, 0, splatmapData);
-
-        Debug.Log("Texture applied");
     }
 
     private void SetAlpha(float height)

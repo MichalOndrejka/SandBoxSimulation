@@ -30,7 +30,7 @@ public class UpdateTerrainScript : MonoBehaviour
         if (terrainData == null) return;
 
         terrainData.heightmapResolution = measureDepth.depthResolution.x;
-        terrainData.size = new Vector3(800, terrainData.size.y, 1000);
+        terrainData.size = new Vector3(750, terrainData.size.y, 1100);
 
         float[,] heights = new float[terrainData.heightmapResolution, terrainData.heightmapResolution];
 
@@ -57,7 +57,6 @@ public class UpdateTerrainScript : MonoBehaviour
         }
 
         terrainData.SetHeights(0, 0, heights);
-        Debug.Log("TerrainData updated");
 
         assignSplatMap.ApplyTexture();
     }

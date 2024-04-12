@@ -1,4 +1,6 @@
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MeasureDepth : MonoBehaviour
 {
@@ -20,9 +22,6 @@ public class MeasureDepth : MonoBehaviour
     [SerializeField]
     private float measureFrequency = 10f;
     float _time;
-
-    [SerializeField]
-    private float verticalScaleFactor = 0.1f;
 
     public float xHeightAdjustment;
     public float yHeightAdjustment;
@@ -46,7 +45,17 @@ public class MeasureDepth : MonoBehaviour
             processDepthData();
             updateTerrainScript.UpdateTerrain();
             _time -= measureFrequency * Time.timeScale;
-            Debug.Log("Updating terrain heights");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Keypad0))
+        {
+            MakeDepthPicture("spawn_liquid");
+        } else if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            MakeDepthPicture("next_design");
+        } else if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            MakeDepthPicture("previous_design");
         }
     }
 
@@ -128,5 +137,46 @@ public class MeasureDepth : MonoBehaviour
         }
 
         rawDepthData = processedDepths;
+    }
+
+    private void MakeDepthPicture(string label)
+    {
+        terrainTexture = new Texture2D(depthResolution.x, depthResolution.y, TextureFormat.RGB24, false);
+
+        for (int i = 0; i < rawDepthData.Length; i++)
+        {
+            float normalizedDepth = Mathf.InverseLerp(maxDepth, 0, rawDepthData[i]) * 255f;
+            byte grayscaleValue = (byte)Mathf.Clamp(normalizedDepth, 0f, 255f);
+
+            Color pixelColor = new Color(grayscaleValue / 255f, grayscaleValue / 255f, grayscaleValue / 255f);
+            int x = i % depthResolution.x;
+            int y = i / depthResolution.x;
+            terrainTexture.SetPixel(x, y, pixelColor);
+        }
+
+        terrainTexture.Apply();
+
+        // Generate a unique key for the image filename
+        string uniqueKey = System.Guid.NewGuid().ToString();
+
+        // Construct the file path using the label and unique key
+        string directoryPath = $"Assets/CollectedImages/{label}/";
+        string filePath = $"{directoryPath}{label}_{uniqueKey}.png";
+
+        // Ensure the directory exists, create it if not
+        if (!System.IO.Directory.Exists(directoryPath))
+        {
+            System.IO.Directory.CreateDirectory(directoryPath);
+        }
+
+        // Save the texture as a PNG file
+        byte[] textureBytes = terrainTexture.EncodeToPNG();
+        System.IO.File.WriteAllBytes(filePath, textureBytes);
+
+        // Import the newly created asset into the Unity Editor
+        AssetDatabase.ImportAsset(filePath);
+
+        Debug.Log($"Depth image saved: {filePath}");
+
     }
 }
