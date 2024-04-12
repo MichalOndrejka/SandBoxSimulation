@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class MeasureDepth : MonoBehaviour
 {
@@ -11,7 +9,7 @@ public class MeasureDepth : MonoBehaviour
 
     public Texture2D terrainTexture;
 
-    public ushort maxDepth = 1170;
+    public ushort maxDepth = 1250;
     public ushort minDepth = 900;
 
     public ushort[] depthData;
@@ -24,13 +22,16 @@ public class MeasureDepth : MonoBehaviour
     float _time;
 
     [SerializeField]
-    private float sensorAngle = 5f;
-
-    [SerializeField]
     private float verticalScaleFactor = 0.1f;
+
+    public float xHeightAdjustment;
+    public float yHeightAdjustment;
+
 
     private void Start()
     {
+        xHeightAdjustment = PlayerPrefs.GetFloat("xHeightAdjustment", 0);
+        yHeightAdjustment = PlayerPrefs.GetFloat("yHeightAdjustment", 0);
         _time = 0f;
         initializeDepthData();
     }
@@ -38,6 +39,7 @@ public class MeasureDepth : MonoBehaviour
     private void Update()
     {
         rawDepthData = multiSourceManager.GetDepthData();
+        ApplyRotation();
         _time += Time.deltaTime;
         if (_time / Time.timeScale > measureFrequency)
         {
@@ -95,5 +97,36 @@ public class MeasureDepth : MonoBehaviour
         {
             depthData[i] = 0;
         }
+    }
+
+    private void ApplyRotation()
+    {
+        ushort[] processedDepths = new ushort[depthResolution.x * depthResolution.y];
+
+        int row = 0 - depthResolution.y / 2;
+        int col = 0 - depthResolution.x / 2;
+
+        for (int i = rawDepthData.Length - 1; i >= 0; i--)
+        {
+
+            ushort depth = rawDepthData[i];
+
+            if ((i + 1) % depthResolution.x == 0)
+            {
+                row++;
+                col = 0 - depthResolution.x / 2;
+            }
+
+            col++;
+
+
+            if (depth == 0) continue;
+
+            float rowScalingFactor = yHeightAdjustment / depthResolution.y * row;
+            float colScalingFactor = xHeightAdjustment / depthResolution.x * col;
+            processedDepths[i] = (ushort)(depth + rowScalingFactor + colScalingFactor);
+        }
+
+        rawDepthData = processedDepths;
     }
 }

@@ -12,6 +12,8 @@ public class UpdateTerrainScript : MonoBehaviour
     private MeasureDepth measureDepth;
     [SerializeField]
     private AssignSplatMap assignSplatMap;
+    [SerializeField]
+    private bool updateTerrain;
 
     void Start()
     {
@@ -21,13 +23,14 @@ public class UpdateTerrainScript : MonoBehaviour
 
     public void UpdateTerrain()
     {
-        return;
+        if (!updateTerrain) return;
+
         TerrainData terrainData = _terrain.terrainData;
 
         if (terrainData == null) return;
 
         terrainData.heightmapResolution = measureDepth.depthResolution.x;
-        terrainData.size = new Vector3(770, terrainData.size.y, 1000);
+        terrainData.size = new Vector3(800, terrainData.size.y, 1000);
 
         float[,] heights = new float[terrainData.heightmapResolution, terrainData.heightmapResolution];
 

@@ -60,6 +60,7 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.20f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\CameraMovement\RaiseLeft.cs" />
     <Compile Include="Assets\Scripts\UpdateTerrainScript.cs" />
     <Compile Include="Assets\Scripts\Kinect\DepthSourceView.cs" />
     <Compile Include="Assets\Scripts\MeasureDepth.cs" />
@@ -76,12 +77,15 @@
     <Compile Include="Assets\Scripts\CameraMovement\MoveDown.cs" />
     <Compile Include="Assets\Scripts\Kinect\DepthSourceManager.cs" />
     <Compile Include="Assets\Scripts\Kinect\DisableOnStart.cs" />
+    <Compile Include="Assets\Scripts\CameraMovement\RaiseRight.cs" />
     <Compile Include="Assets\Scripts\CameraMovement\MoveRight.cs" />
+    <Compile Include="Assets\Scripts\CameraMovement\RaiseDown.cs" />
     <Compile Include="Assets\Scripts\Kinect\BodySourceManager.cs" />
     <Compile Include="Assets\Scripts\Kinect\BodySourceView.cs" />
     <Compile Include="Assets\Scripts\Kinect\ColorSourceView.cs" />
     <Compile Include="Assets\Scripts\WaterSpawnController.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\CameraMovement\RaiseUp.cs" />
     <Compile Include="Assets\Scripts\CameraMovement\MoveLeft.cs" />
     <Compile Include="Assets\Scripts\Kinect\MultiSourceManager.cs" />
     <Compile Include="Assets\Scripts\Calibration.cs" />

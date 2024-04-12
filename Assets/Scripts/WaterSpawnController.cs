@@ -164,6 +164,7 @@ public class WaterSpawnController : MonoBehaviour
         int avgZ = sumY / count;
         Vector3 handPos = terrain.transform.InverseTransformPoint(new Vector3(avgX, 0f, avgZ));
         float height = terrain.SampleHeight(handPos);
+        Debug.Log(height);
         if (height == 600)
         {
             Debug.Log("Invalid height");
@@ -175,7 +176,7 @@ public class WaterSpawnController : MonoBehaviour
         posZ *= terrainData.size.x;
 
         Debug.Log("Spawning Water at X:" + posZ + ", Y:" + height + ", Z:" + posX);
-        return new Vector3(800 - posZ, height, posX);
+        return new Vector3(800 - posZ, 150, posX);
 
     }
 }

@@ -4,18 +4,20 @@ using UnityEngine.SceneManagement;
 public class Calibration : MonoBehaviour
 {
     private Camera _mainCamera;
+    [SerializeField]
+    private MeasureDepth measureDepth;
 
     private void Start()
     {
         _mainCamera = Camera.main;
     }
 
-    public void CancelCameraSettings()
+    public void CancelSettings()
     {
         GoToMainMenu();
     }
 
-    public void SaveCameraSettings()
+    public void SaveSettings()
     {
         // Save camera position
         PlayerPrefs.SetFloat("CameraPositionX", _mainCamera.transform.position.x);
@@ -24,6 +26,9 @@ public class Calibration : MonoBehaviour
 
         // Save camera size
         PlayerPrefs.SetFloat("CameraSize", _mainCamera.orthographicSize);
+
+        PlayerPrefs.SetFloat("xHeightAdjustment", measureDepth.xHeightAdjustment);
+        PlayerPrefs.SetFloat("yHeightAdjustment", measureDepth.yHeightAdjustment);
 
         // Save PlayerPrefs to disk
         PlayerPrefs.Save();
