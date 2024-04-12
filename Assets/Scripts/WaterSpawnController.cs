@@ -31,8 +31,8 @@ public class WaterSpawnController : MonoBehaviour
     private float waterSpawnCooldown;
     float _time;
 
-    private float waterTimeScale = 2f;
-    private float lavaTimeScale = 0.4f;
+    public float waterTimeScale = 2f;
+    public float lavaTimeScale = 0.4f;
     public bool spawnWater;
 
     public Color WaterColor;
@@ -41,8 +41,7 @@ public class WaterSpawnController : MonoBehaviour
     [SerializeField]
     private Material textureWithShader;
 
-    [SerializeField]
-    private TerrainData terrainData;
+    public TerrainData terrainData;
 
     private void Awake()
     {
@@ -177,6 +176,18 @@ public class WaterSpawnController : MonoBehaviour
 
         Debug.Log("Spawning Water at X:" + posZ + ", Y:" + height + ", Z:" + posX);
         return new Vector3(800 - posZ, 150, posX);
+    }
 
+    public void RemoveAllParticles()
+    {
+        // Get the transform of the current object (assuming this script is attached to the parent object)
+        Transform parentTransform = transform;
+
+        // Loop through each child object of the parent
+        foreach (Transform child in parentTransform)
+        {
+            // Destroy the child game object
+            Destroy(child.gameObject);
+        }
     }
 }

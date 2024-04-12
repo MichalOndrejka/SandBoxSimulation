@@ -656,6 +656,8 @@ MonoBehaviour:
   numberToSpawnOnY: 4
   numberToSpawnOnZ: 5
   waterSpawnCooldown: 2
+  waterTimeScale: 2
+  lavaTimeScale: 0.4
   spawnWater: 1
   WaterColor: {r: 0.064044006, g: 0.18126088, b: 0.96981126, a: 1}
   LavaColor: {r: 0.93333334, g: 0.3119046, b: 0, a: 1}
@@ -796,6 +798,10 @@ PrefabInstance:
       propertyPath: currentTextureMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7241682087606050650, guid: f6dcc94517f63264096d7b4271169fb0, type: 3}
+      propertyPath: waterSpawnController
+      value: 
+      objectReference: {fileID: 1870813897}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
