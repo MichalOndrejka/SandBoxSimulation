@@ -61,14 +61,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraMovement\RaiseLeft.cs" />
-    <Compile Include="Assets\Scripts\UpdateTerrainScript.cs" />
+    <Compile Include="Assets\Scripts\UpdateTerrainData.cs" />
     <Compile Include="Assets\Scripts\Kinect\DepthSourceView.cs" />
     <Compile Include="Assets\Scripts\MeasureDepth.cs" />
     <Compile Include="Assets\Scripts\Kinect\ColorSourceManager.cs" />
     <Compile Include="Assets\Scripts\BlurController.cs" />
     <Compile Include="Assets\Scripts\CameraMovement\MoveUp.cs" />
     <Compile Include="Assets\Scripts\CameraMovement\ZoomIn.cs" />
-    <Compile Include="Assets\Scripts\AssignSplatMap.cs" />
     <Compile Include="Assets\Scripts\CameraMovement\ZoomOut.cs" />
     <Compile Include="Assets\Scripts\LiquidParticleController.cs" />
     <Compile Include="Assets\Scripts\Kinect\InfraredSourceManager.cs" />
@@ -84,6 +83,7 @@
     <Compile Include="Assets\Scripts\Kinect\BodySourceView.cs" />
     <Compile Include="Assets\Scripts\Kinect\ColorSourceView.cs" />
     <Compile Include="Assets\Scripts\WaterSpawnController.cs" />
+    <Compile Include="Assets\Scripts\UpdateTerrainTexture.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\CameraMovement\RaiseUp.cs" />
     <Compile Include="Assets\Scripts\CameraMovement\MoveLeft.cs" />

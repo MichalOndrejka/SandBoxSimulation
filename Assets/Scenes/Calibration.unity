@@ -853,6 +853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b9f0e3683ea37340a79a57ca77626f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waterSpawnController: {fileID: 0}
   _balanceHeightFactor: 0
   currentTextureMode: 1
 --- !u!1 &418810247
@@ -2940,16 +2941,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   multiSourceManager: {fileID: 1802491566}
-  updateTerrainScript: {fileID: 343928565}
+  updateTerrainData: {fileID: 343928565}
   terrainTexture: {fileID: 0}
   maxDepth: 1250
   minDepth: 900
   depthData: 
   rawDepthData: 
   measureFrequency: 4
-  verticalScaleFactor: 0.1
-  xHeightAdjustment: 0
-  yHeightAdjustment: 0
+  xRotation: 0
+  yRotation: 0
+  enableDepthCapture: 0
 --- !u!1 &1430717121
 GameObject:
   m_ObjectHideFlags: 0

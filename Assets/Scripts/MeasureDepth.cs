@@ -5,7 +5,7 @@ public class MeasureDepth : MonoBehaviour
     [SerializeField]
     private MultiSourceManager multiSourceManager;
     [SerializeField]
-    private UpdateTerrainScript updateTerrainScript;
+    private UpdateTerrainData updateTerrainData;
 
     public Texture2D terrainTexture;
 
@@ -70,7 +70,7 @@ public class MeasureDepth : MonoBehaviour
     private void updateTerrainObject()
     {
         processDepthData();
-        updateTerrainScript.UpdateTerrain();
+        updateTerrainData.UpdateTerrain();
     }
 
     // Function for trasholding raw depth data and smoothening

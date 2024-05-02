@@ -17,6 +17,7 @@ public class Calibration : MonoBehaviour
         GoToMainMenu();
     }
 
+    // Save player settings
     public void SaveSettings()
     {
         // Save camera position
@@ -36,6 +37,7 @@ public class Calibration : MonoBehaviour
         GoToMainMenu();
     }
 
+    // Swithc scene to MainMenu scene
     public void GoToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");

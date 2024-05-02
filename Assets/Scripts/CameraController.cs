@@ -19,7 +19,6 @@ public class CameraController : MonoBehaviour
         LoadCameraSettings();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!canMove) return;
@@ -28,7 +27,7 @@ public class CameraController : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float upDownInput = Input.GetAxis("UpDown");
 
-        // Calculate zoom amount
+        // Calculate zoom
         float newSize = Mathf.Clamp(Camera.main.orthographicSize - upDownInput * moveSpeed * Time.deltaTime, 1f, Mathf.Infinity);
 
         // Update the orthographic size of the camera
@@ -41,6 +40,7 @@ public class CameraController : MonoBehaviour
         transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
     }
 
+    // Load player settings from calibration
     private void LoadCameraSettings()
     {
         // Load camera position

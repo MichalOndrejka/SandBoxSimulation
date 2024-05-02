@@ -536,6 +536,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 81330113}
   m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
+--- !u!114 &782628376 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4215438126671983272, guid: f6dcc94517f63264096d7b4271169fb0, type: 3}
+  m_PrefabInstance: {fileID: 6500781158209259071}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6974b5b56e559c74ba90c697d1c5c67f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1022666516
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,11 +662,13 @@ MonoBehaviour:
   liquidParticlePrefab: {fileID: 7377276023756543388, guid: 8d0ac08685349c94ea2f1fb4e4148b27, type: 3}
   measureDepth: {fileID: 1294677224}
   waterSpawnYOffset: 1
-  waterSpawnOffset: 7
-  numberToSpawnOnX: 5
-  numberToSpawnOnY: 4
-  numberToSpawnOnZ: 5
-  waterSpawnCooldown: 2
+  waterSpawnOffset: 2
+  numberToSpawnOnX: 3
+  numberToSpawnOnY: 3
+  numberToSpawnOnZ: 2
+  maxParticleCount: 2500
+  liquidSpawnCooldown: 0.25
+  liquidRemoveCooldown: 30
   waterTimeScale: 2
   lavaTimeScale: 0.4
   spawnWater: 1
@@ -714,6 +727,10 @@ PrefabInstance:
       propertyPath: roatateDegerees
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 791827896093205441, guid: f6dcc94517f63264096d7b4271169fb0, type: 3}
+      propertyPath: updateTerrainData
+      value: 
+      objectReference: {fileID: 782628376}
     - target: {fileID: 791827896093205441, guid: f6dcc94517f63264096d7b4271169fb0, type: 3}
       propertyPath: xHeightAdjustment
       value: -43

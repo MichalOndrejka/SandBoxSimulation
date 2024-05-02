@@ -23,11 +23,17 @@ public class WaterSpawnController : MonoBehaviour
     [SerializeField]
     private int numberToSpawnOnZ;
 
+    [SerializeField]
+    private int maxParticleCount;
+
     private Vector3 _handPosition;
 
     [SerializeField]
-    private float waterSpawnCooldown;
-    float _time;
+    private float liquidSpawnCooldown;
+    [SerializeField]
+    private float liquidRemoveCooldown;
+    float _liquidSpawnTime;
+    float _liquidRemoveTime;
 
     public float waterTimeScale = 2f;
     public float lavaTimeScale = 0.4f;
@@ -50,7 +56,8 @@ public class WaterSpawnController : MonoBehaviour
 
     private void Start()
     {
-        _time = 0f;
+        _liquidSpawnTime = 0f;
+        _liquidRemoveTime = 0f;
     }
 
     void Update()
@@ -73,17 +80,26 @@ public class WaterSpawnController : MonoBehaviour
             textureWithShader.SetFloat("_Cutoff", 1.0f - 0.1f);
         }
 
-        _time += Time.deltaTime;
+        _liquidSpawnTime += Time.deltaTime;
 
-        // Check for hand and spawn water if hand detected
-        if (_time / Time.timeScale > waterSpawnCooldown)
+        // Check for hand and spawn liquid if hand detected
+        if (_liquidSpawnTime / Time.timeScale > liquidSpawnCooldown)
         {
             _handPosition = GetHandPosition();
-            _time = 0f;
+            _liquidSpawnTime = 0f;
             if (_handPosition != Vector3.zero)
             {
                 SpawnParticle(_handPosition);
             }
+        }
+
+
+        _liquidRemoveTime += Time.deltaTime;
+
+        if (_liquidRemoveTime / Time.timeScale > liquidRemoveCooldown)
+        {
+            RemoveAllParticles();
+            _liquidRemoveTime = 0f;
         }
 
         // Check for mouse click and spawn water on cursor if detected
@@ -107,6 +123,9 @@ public class WaterSpawnController : MonoBehaviour
     // Function to spawn liquid particle on a specific position, spawn numberToSpawn particled with waterSpawnOffset offset
     void SpawnParticle(Vector3 position)
     {
+        // Dont spawn particle if too many in scene
+        if (transform.childCount >= maxParticleCount) return;
+
         Vector3 tempPosition = position;
         for(int x = 0; x < numberToSpawnOnX; x++)
         {
@@ -125,6 +144,9 @@ public class WaterSpawnController : MonoBehaviour
                 }
             }
         }
+
+        // Reset remove time since water was just spawned
+        _liquidRemoveTime = 0f;
     }
 
     // Check for hand in depth data
