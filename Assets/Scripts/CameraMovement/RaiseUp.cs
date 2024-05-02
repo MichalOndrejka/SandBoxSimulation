@@ -14,9 +14,9 @@ public class RaiseUp : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         if (_isPressed)
         {
-            if (measureDepth.yHeightAdjustment < 300)
+            if (measureDepth.yRotation < 300)
             {
-                measureDepth.yHeightAdjustment -= speed * Time.deltaTime;
+                measureDepth.yRotation -= speed * Time.deltaTime;
             }
         }
     }

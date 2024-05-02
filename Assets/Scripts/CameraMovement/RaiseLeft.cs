@@ -14,9 +14,9 @@ public class RaiseLeft : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         if (_isPressed)
         {
-            if (measureDepth.xHeightAdjustment < 400)
+            if (measureDepth.xRotation < 400)
             {
-                measureDepth.xHeightAdjustment += speed * Time.deltaTime;
+                measureDepth.xRotation += speed * Time.deltaTime;
             }
         }
     }

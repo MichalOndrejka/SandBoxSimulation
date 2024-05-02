@@ -14,9 +14,9 @@ public class RaiseRight : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         if (_isPressed)
         {
-            if (-400 < measureDepth.xHeightAdjustment)
+            if (-400 < measureDepth.xRotation)
             {
-                measureDepth.xHeightAdjustment -= speed * Time.deltaTime;
+                measureDepth.xRotation -= speed * Time.deltaTime;
             }
         }
     }

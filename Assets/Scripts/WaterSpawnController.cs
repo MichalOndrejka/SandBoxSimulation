@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WaterSpawnController : MonoBehaviour
@@ -45,6 +43,7 @@ public class WaterSpawnController : MonoBehaviour
 
     private void Awake()
     {
+        // Set the time scale based on current liquid ismulation mode
         if (spawnWater) Time.timeScale = waterTimeScale;
         else Time.timeScale = lavaTimeScale;
     }
@@ -56,6 +55,7 @@ public class WaterSpawnController : MonoBehaviour
 
     void Update()
     {
+        // If water simulation set the shader to show water
         if (spawnWater)
         { 
             textureWithShader.SetColor("_Color", WaterColor);
@@ -64,12 +64,18 @@ public class WaterSpawnController : MonoBehaviour
 
             // Set the water transparency (_Cutoff) property
             textureWithShader.SetFloat("_Cutoff", 1.0f - 0.5f);
-        } else
+
+        // Else set the shader to show lava
+        }
+        else
         {
             textureWithShader.SetColor("_Color", LavaColor);
             textureWithShader.SetFloat("_Cutoff", 1.0f - 0.1f);
         }
+
         _time += Time.deltaTime;
+
+        // Check for hand and spawn water if hand detected
         if (_time / Time.timeScale > waterSpawnCooldown)
         {
             _handPosition = GetHandPosition();
@@ -79,7 +85,8 @@ public class WaterSpawnController : MonoBehaviour
                 SpawnParticle(_handPosition);
             }
         }
-        // Check for mouse click
+
+        // Check for mouse click and spawn water on cursor if detected
         if (Input.GetMouseButtonDown(0)) // Left mouse button clicked
         {
             // Cast a ray from the camera to the terrain layer
@@ -97,6 +104,7 @@ public class WaterSpawnController : MonoBehaviour
         //SimulationStep();
     }
 
+    // Function to spawn liquid particle on a specific position, spawn numberToSpawn particled with waterSpawnOffset offset
     void SpawnParticle(Vector3 position)
     {
         Vector3 tempPosition = position;
@@ -119,13 +127,16 @@ public class WaterSpawnController : MonoBehaviour
         }
     }
 
+    // Check for hand in depth data
     private Vector3 GetHandPosition()
     {
+        // Check if depth data are valid
         if (measureDepth.rawDepthData.Length == 0)
         {
             return new Vector3(0, 0, 0);
         }
 
+        // Variables used to ignore edges od depth data
         int minX = 100;
         int minY = 100;
         int maxX = measureDepth.depthResolution.x - minX;
@@ -136,6 +147,7 @@ public class WaterSpawnController : MonoBehaviour
         int sumY = 0;
         int count = 0;
 
+        // Loop through dpeth data and save hand location
         for (int x = minX; x < maxX; x++)
         {
             for (int y = minY; y < maxY; y++)
@@ -151,10 +163,12 @@ public class WaterSpawnController : MonoBehaviour
             }
         }
 
+        // If no hand return vector with zeroes
         if (count == 0) {
             return new Vector3(0, 0, 0);
         }
 
+        // Calucate hand coordinates
         int avgX = sumX / count;
         int avgZ = sumY / count;
         Vector3 handPos = terrain.transform.InverseTransformPoint(new Vector3(avgX, 0f, avgZ));
@@ -168,12 +182,14 @@ public class WaterSpawnController : MonoBehaviour
         posX *= terrainData.size.z;
         posZ *= terrainData.size.x;
 
+        // Return the hand coordiantes in world space
         return new Vector3(800 - posZ, 150, posX);
     }
 
+    // Remove all particles within a scene
     public void RemoveAllParticles()
     {
-        // Get the transform of the current object (assuming this script is attached to the parent object)
+        // Get the transform of the current object
         Transform parentTransform = transform;
 
         // Loop through each child object of the parent

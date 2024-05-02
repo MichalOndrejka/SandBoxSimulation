@@ -27,8 +27,8 @@ public class Calibration : MonoBehaviour
         // Save camera size
         PlayerPrefs.SetFloat("CameraSize", _mainCamera.orthographicSize);
 
-        PlayerPrefs.SetFloat("xHeightAdjustment", measureDepth.xHeightAdjustment);
-        PlayerPrefs.SetFloat("yHeightAdjustment", measureDepth.yHeightAdjustment);
+        PlayerPrefs.SetFloat("xRotation", measureDepth.xRotation);
+        PlayerPrefs.SetFloat("yRotation", measureDepth.yRotation);
 
         // Save PlayerPrefs to disk
         PlayerPrefs.Save();

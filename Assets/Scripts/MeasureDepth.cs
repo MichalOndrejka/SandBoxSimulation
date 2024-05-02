@@ -1,6 +1,4 @@
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MeasureDepth : MonoBehaviour
 {
@@ -20,18 +18,20 @@ public class MeasureDepth : MonoBehaviour
     public readonly Vector2Int depthResolution = new Vector2Int(512, 424);
 
     [SerializeField]
-    private float measureFrequency = 10f;
+    private float measureFrequency;
     float _time;
 
-    public float xHeightAdjustment;
-    public float yHeightAdjustment;
+    public float xRotation;
+    public float yRotation;
+
+    [SerializeField]
+    private bool enableDepthCapture;
 
 
     private void Start()
     {
-        xHeightAdjustment = PlayerPrefs.GetFloat("xHeightAdjustment", 0);
-        yHeightAdjustment = PlayerPrefs.GetFloat("yHeightAdjustment", 0);
         _time = 0f;
+        loadRotationPresets();
         initializeDepthData();
     }
 
@@ -40,12 +40,14 @@ public class MeasureDepth : MonoBehaviour
         rawDepthData = multiSourceManager.GetDepthData();
         ApplyRotation();
         _time += Time.deltaTime;
+
         if (_time / Time.timeScale > measureFrequency)
         {
-            processDepthData();
-            updateTerrainScript.UpdateTerrain();
+            updateTerrainObject();
             _time -= measureFrequency * Time.timeScale;
         }
+
+        if (!enableDepthCapture) return;
 
         if (Input.GetKeyDown(KeyCode.Keypad0))
         {
@@ -59,20 +61,33 @@ public class MeasureDepth : MonoBehaviour
         }
     }
 
+    private void loadRotationPresets()
+    {
+        xRotation = PlayerPrefs.GetFloat("xRotation", 0);
+        yRotation = PlayerPrefs.GetFloat("yRotation", 0);
+    }
+
+    private void updateTerrainObject()
+    {
+        processDepthData();
+        updateTerrainScript.UpdateTerrain();
+    }
+
+    // Function for trasholding raw depth data and smoothening
     private void processDepthData()
     {
         for (int i = 0; i < rawDepthData.Length; i++)
         {
             if (rawDepthData[i] < minDepth || rawDepthData[i] > maxDepth) continue;
-            // Calculate indices of neighbors
+            // Calculate indices of current processed depth
             int x = i % depthResolution.x;
             int y = i / depthResolution.x;
 
-            // Perform linear interpolation using neighbors
+            // Perform linear interpolation (smoothening) using depths of neighbors
             float sum = 0f;
             int count = 0;
 
-            ushort depth = 0;
+            ushort depth;
 
             for (int dx = -1; dx <= 1; dx++)
             {
@@ -99,6 +114,7 @@ public class MeasureDepth : MonoBehaviour
         }
     }
 
+    // Initialize depth data as an array of zeroes
     private void initializeDepthData()
     {
         depthData = new ushort[depthResolution.x * depthResolution.y];
@@ -108,10 +124,12 @@ public class MeasureDepth : MonoBehaviour
         }
     }
 
+    // Apply rotation to depth data
     private void ApplyRotation()
     {
-        ushort[] processedDepths = new ushort[depthResolution.x * depthResolution.y];
+        ushort[] rotatedDepths = new ushort[depthResolution.x * depthResolution.y];
 
+        // Calculate indecies
         int row = 0 - depthResolution.y / 2;
         int col = 0 - depthResolution.x / 2;
 
@@ -120,6 +138,7 @@ public class MeasureDepth : MonoBehaviour
 
             ushort depth = rawDepthData[i];
 
+            // Update indecies
             if ((i + 1) % depthResolution.x == 0)
             {
                 row++;
@@ -128,21 +147,26 @@ public class MeasureDepth : MonoBehaviour
 
             col++;
 
-
+            // Ignore depths with value zero, because of Kinect imperfection
             if (depth == 0) continue;
 
-            float rowScalingFactor = yHeightAdjustment / depthResolution.y * row;
-            float colScalingFactor = xHeightAdjustment / depthResolution.x * col;
-            processedDepths[i] = (ushort)(depth + rowScalingFactor + colScalingFactor);
+            // The game object is rotated so the x and y need to be swapped in order to represent the word space coordinates
+            float xScalingFactor = yRotation / depthResolution.y * row;
+            float yScalingFactor = xRotation / depthResolution.x * col;
+            rotatedDepths[i] = (ushort)(depth + xScalingFactor + yScalingFactor);
         }
 
-        rawDepthData = processedDepths;
+        // Assing rotated depths
+        rawDepthData = rotatedDepths;
     }
 
+    // Function for making PNG grayscale images using depth data
     private void MakeDepthPicture(string label)
     {
+        // Create image (texture)
         terrainTexture = new Texture2D(depthResolution.x, depthResolution.y, TextureFormat.RGB24, false);
 
+        // Loop through depth data, normalize them and set pixel of terrainTexture to a grayscale value
         for (int i = 0; i < rawDepthData.Length; i++)
         {
             float normalizedDepth = Mathf.InverseLerp(maxDepth, 0, rawDepthData[i]) * 255f;
@@ -154,12 +178,13 @@ public class MeasureDepth : MonoBehaviour
             terrainTexture.SetPixel(x, y, pixelColor);
         }
 
+        // Apply changes
         terrainTexture.Apply();
 
         // Generate a unique key for the image filename
         string uniqueKey = System.Guid.NewGuid().ToString();
 
-        // Construct the file path using the label and unique key
+        // Create the file path using the label and unique key
         string directoryPath = $"Assets/CollectedImages/{label}/";
         string filePath = $"{directoryPath}{label}_{uniqueKey}.png";
 
@@ -173,10 +198,6 @@ public class MeasureDepth : MonoBehaviour
         byte[] textureBytes = terrainTexture.EncodeToPNG();
         System.IO.File.WriteAllBytes(filePath, textureBytes);
 
-        // Import the newly created asset into the Unity Editor
-        AssetDatabase.ImportAsset(filePath);
-
         Debug.Log($"Depth image saved: {filePath}");
-
     }
 }
